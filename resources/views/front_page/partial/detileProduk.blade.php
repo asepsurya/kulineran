@@ -22,10 +22,12 @@
                 background-repeat: no-repeat;
                 background-size: cover; ">
                 </div>
-
+                <form action="/addCartVarian" method="post">
+                    @csrf
                 <div class="row m-0">
                     <h6 class="p-3 m-0 bg-light w-100">{{ $item->namaProduk }} <small class="text-black-50">{{ $item->kategori->jenisKategori }}</small></h6>
                     <div class="col-md-12 px-0 border-top">
+                    
                     
                     @php
                     //Contoh Penggunaan Fungsi explode ()
@@ -34,9 +36,9 @@
                     @endphp
                    <div class="m-2">
                         <label for="">Pilih Varian / Toping</label>
-                        <select name="" id="" class="form-control">
+                        <select name="varian" id="varian" class="form-control">
                             @php
-                            for ( $i = 0; $i < count( $PecahStr ); $i++ ) { echo' <option value="">'.$PecahStr[$i].'</option>';
+                            for ( $i = 0; $i < count( $PecahStr ); $i++ ) { echo' <option value="'.$PecahStr[$i].'">'.$PecahStr[$i].'</option>';
                                 }
                                 @endphp
                     
@@ -48,7 +50,10 @@
                 
             </div>
             <div class="modal-footer p-0 m-0">
-                <button class="btn btn-primary btn-block">Pesan</button>
+                <input type="text" name="idProduk" id="idProduk" value="{{ $item->id }}" hidden>
+                <button  type="submit" class="btn btn-primary btn-block">Pesan</button></a>
+            </form>
+
             </div>
         </div>
     </div>

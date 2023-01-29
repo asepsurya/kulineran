@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Models\Produk;
+use App\Models\Alamat;
 use App\Models\kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class fronpageController extends Controller
 {
@@ -16,11 +18,11 @@ class fronpageController extends Controller
     }
     public function search(){
         if(request('search')){
-           $data = Produk::where('namaProduk', 'like' , '%' . request('search') . '%')->get();
+           $data = Produk::where('namaProduk', 'like' , '%' . request('search') . '%')->paginate(8)->withQueryString();
         }elseif(request('idKategori')){
-            $data = Produk::where('idKategori', 'like' , '%' . request('idKategori') . '%')->get();
+            $data = Produk::where('idKategori', 'like' , '%' . request('idKategori') . '%')->paginate(8)->withQueryString();
         }else{
-            $data =Produk::all();
+            $data =Produk::paginate(8);
         }
         return view('front_page.search.search',[
             'data'=> $data,
@@ -29,9 +31,4 @@ class fronpageController extends Controller
 
     }
 
-    public function cart(){
-        return view('front_page.cart.cart',[
-            'title'=>'Keranjang Belanja'
-        ]);
-    }
 }

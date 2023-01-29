@@ -4,7 +4,7 @@
             <div class="row align-items-center">
                 <div class="col-5">
                     <a href="/" class="brand-wrap mb-0">
-                        <img alt="#" class="img-fluid" src="img/logo2-white.png">
+                        <img alt="#" class="img-fluid" src="{{ asset('img/logo2-white.png') }}">
                     </a>
                     <!-- brand-wrap.// -->
                 </div>
@@ -32,7 +32,7 @@
                        
                         <a href="/cart" class="widget-header text-light m-2">
                             <div class="icon d-flex align-items-center">
-                                <i class="feather-shopping-cart h6 mr-2 mb-0"></i> <span class="badge badge-primary">5</span>
+                                <i class="feather-shopping-cart h6 mr-2 mb-0"></i> <span class="badge badge-primary">{{ auth()->user()->cart->count() }}</span>
                             </div>
                         </a>
                         <!-- my account -->

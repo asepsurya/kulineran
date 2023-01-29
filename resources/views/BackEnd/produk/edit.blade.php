@@ -79,10 +79,12 @@
             </div>
             <div class="form-group">
                 @if ($item->rekomendasi == "on")
-                    <input type="checkbox" name="rekomendasi"  checked >
+                    <input type="hidden" name="rekomendasi" value="off">
+                    <input type="checkbox" name="rekomendasi"  checked  value="on">
                     <label for="">Tampilkan di Halaman Rekomendasi Produk?</label>
                 @else
-                    <input type="checkbox" name="rekomendasi" >
+                    <input type="hidden" name="rekomendasi" value="off">
+                    <input type="checkbox" name="rekomendasi" value="on" >
                     <label for="">Tampilkan di Halaman Rekomendasi Produk?</label>
                 @endif
                 
@@ -114,7 +116,7 @@
             <div class="form-group">
                 <label> Varian Produk </label><br>
                 <input type="text" name="varian" id="varian" class="form-control form-control-border" value="{{ $item->varian }}">
-                <small>Ex:Pedas|Manis|Original</small>
+                <small>Pisahkan dengan tanda (,) Ex:Pedas,Manis,Original</small>
             </div>
         </div>
         <!-- /.col -->

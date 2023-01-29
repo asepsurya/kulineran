@@ -41,7 +41,7 @@
             <div class="row">
                 <aside class="col-md-4 footer-about">
                     <article class="d-flex pb-3">
-                        <div><img alt="#" src="img/logo_web.png" class="logo-footer mr-3"></div>
+                        <div><img alt="#" src="{{ asset('img/logo_web.png') }}" class="logo-footer mr-3"></div>
                         <div>
                             <h6 class="title text-white">About Us</h6>
                             <p class="text-muted">Some short text about company like You might remember the Dell computer commercials in which a youth reports.</p>
@@ -100,8 +100,8 @@
         <div class="container d-flex align-items-center">
             <p class="mb-0"> © 2020 Company All rights reserved </p>
             <p class="text-muted mb-0 ml-auto d-flex align-items-center">
-                <a href="#" class="d-block"><img alt="#" src="img/appstore.png" height="40"></a>
-                <a href="#" class="d-block ml-3"><img alt="#" src="img/playmarket.png" height="40"></a>
+                <a href="#" class="d-block"><img alt="#" src="{{ asset('img/appstore.png') }}" height="40"></a>
+                <a href="#" class="d-block ml-3"><img alt="#" src="{{ asset('img/playmarket.png') }}" height="40"></a>
             </p>
         </div>
     </section>

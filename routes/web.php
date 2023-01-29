@@ -7,6 +7,8 @@ use App\Http\Controllers\produkController;
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\fronpageController;
 use App\Http\Controllers\profileController;
+use App\Http\Controllers\cartController;
+use App\Http\Controllers\cuponsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,11 +23,31 @@ use App\Http\Controllers\profileController;
 Route::get('/',[fronpageController::class,'index']);
 Route::get('/search',[fronpageController::class,'search']);
 // cart
-Route::get('/cart',[fronpageController::class,'cart']);
+Route::get('/cart',[cartController::class,'cart'])->middleware('auth');
+Route::get('/addCart/item/{id}',[cartController::class,'addCart'])->middleware('auth');
+Route::post('/addCartVarian',[cartController::class,'addCartVarian'])->middleware('auth');
+Route::post('/cart/qtyUpdate/{id}',[cartController::class,'autoQty'])->middleware('auth');
+Route::get('/hapusItem/{id}',[cartController::class,'hapusItemCart'])->middleware('auth');
+// checkout
+// Route::post('/checkout',[checkoutController::class,'index'])->middleware('auth');
+// cupon
+Route::get('/coupons',[cuponsController::class,'index'])->middleware('auth');
 // profile
-Route::get('/profile',[profileController::class,'index']);
-Route::post('/profile/ubahPhoto',[profileController::class,'ubahPhoto']);
-Route::get('/address',[profileController::class,'address']);
+Route::get('/profile',[profileController::class,'index'])->middleware('auth');;
+Route::post('/profile/ubahPhoto',[profileController::class,'ubahPhoto'])->middleware('auth');
+Route::post('/profile/update',[profileController::class,'ProfileUpdate'])->middleware('auth');
+Route::post('/profile/ubahPassword',[profileController::class,'ubahPassword'])->middleware('auth');
+
+// address
+Route::get('/address',[profileController::class,'address'])->middleware('auth');
+Route::post('/address/add',[profileController::class,'addAddress'])->middleware('auth');
+Route::get('/address/update/{id}',[profileController::class,'updateAddress'])->middleware('auth');
+Route::post('/address/update',[profileController::class,'ubahAksiAddress'])->middleware('auth');
+Route::get('/address/delete/{id}',[profileController::class,'deleteAddress'])->middleware('auth');
+
+Route::post('/getkabupatenUpdate',[profileController::class,'getkabupaten'])->name('getkabupaten');
+Route::post('/getkecamatanUpdate',[profileController::class,'getkecamatan'])->name('getkecamatan');
+Route::post('/getdesaUpdate',[profileController::class,'getdesa'])->name('getdesa');
 
 // Dashboard Route
 Route::get('/dashboard',[dashboardController::class,'index'])->middleware('auth','isAdmin');

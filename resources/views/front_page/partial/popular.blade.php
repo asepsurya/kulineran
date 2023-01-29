@@ -38,9 +38,12 @@
                     </div>
 
                     @if ($item->varian == "")
-                        <button class="btn btn-primary btn-block">Pesan</button>
+                    <a href="/addCart/item/{{ $item->id }}">
+                        <button class="btn btn-primary btn-block"><span class="feather-shopping-cart"></span> Pesan</button>
+                    </a>
                     @else
-                        <button data-bs-toggle="modal" data-bs-target="#detileProduk-{{ $item->id }}"  class="btn btn-primary btn-block">Pesan</button>
+                    
+                        <button data-bs-toggle="modal" data-bs-target="#detileProduk-{{ $item->id }}"  class="btn btn-primary btn-block"><span class="feather-shopping-cart"></span> Pesan</button>
                     @endif
                     
                 </div>

@@ -12,7 +12,7 @@
                     @endif
                 </div>
                 <div class="right">
-                    <h6 class="mb-1 font-weight-bold">{{ auth()->user()->nama_lengkap }} <i
+                    <h6 class="mb-1 font-weight-bold text-primary">{{ auth()->user()->nama_lengkap }} <i
                             class="feather-check-circle text-success"></i></h6>
                     <p class="text-muted m-0 small">{{ auth()->user()->email }}</p>
                 </div>
@@ -33,8 +33,7 @@
                     <h6 class="font-weight-bold m-0"><i class="feather-chevron-right"></i></h6>
                 </div>
             </a>
-            <a href="/address"
-                class="d-flex w-100 align-items-center border-bottom p-3">
+            <a href="/address" class="d-flex w-100 align-items-center border-bottom p-3">
                 <div class="left mr-3">
                     <h6 class="font-weight-bold mb-1 text-dark">Address</h6>
                     <p class="small text-muted m-0">Alamat tempat tinggalmu</p>
@@ -43,38 +42,31 @@
                     <h6 class="font-weight-bold m-0"><i class="feather-chevron-right"></i></h6>
                 </div>
             </a>
-            <a class="d-flex align-items-center border-bottom p-3" data-toggle="modal" data-target="#inviteModal">
-                <div class="left mr-3">
-                    <h6 class="font-weight-bold mb-1">Refer Friends</h6>
-                    <p class="small text-primary m-0">Get $10.00 FREE</p>
-                </div>
-                <div class="right ml-auto">
-                    <h6 class="font-weight-bold m-0"><i class="feather-chevron-right"></i></h6>
-                </div>
-            </a>
+
             <a href="faq.html" class="d-flex w-100 align-items-center border-bottom px-3 py-4">
                 <div class="left mr-3">
                     <h6 class="font-weight-bold m-0 text-dark"><i
-                            class="feather-truck bg-danger text-white p-2 rounded-circle mr-2"></i> Delivery Support
+                            class="feather-truck bg-danger text-white p-2 rounded-circle mr-2"></i> Pesananmu
                     </h6>
                 </div>
                 <div class="right ml-auto">
                     <h6 class="font-weight-bold m-0"><i class="feather-chevron-right"></i></h6>
                 </div>
             </a>
-            <a href="contact-us.html" class="d-flex w-100 align-items-center border-bottom px-3 py-4">
+            <a href="contact-us.html" class="d-flex w-100 align-items-center border-bottom px-3 py-3">
                 <div class="left mr-3">
-                    <h6 class="font-weight-bold m-0 text-dark"><i
-                            class="feather-phone bg-primary text-white p-2 rounded-circle mr-2"></i> Contact</h6>
+                    <h6 class="font-weight-bold m-0 text-dark pt-2"><i
+                            class="feather-phone bg-primary text-white p-2 rounded-circle mr-2"></i> Hubungi Kami</h6>
+
                 </div>
                 <div class="right ml-auto">
                     <h6 class="font-weight-bold m-0"><i class="feather-chevron-right"></i></h6>
                 </div>
             </a>
-            <a href="terms.html" class="d-flex w-100 align-items-center border-bottom px-3 py-4">
+            <a href="/coupons" class="d-flex w-100 align-items-center border-bottom px-3 py-4">
                 <div class="left mr-3">
                     <h6 class="font-weight-bold m-0 text-dark"><i
-                            class="feather-info bg-success text-white p-2 rounded-circle mr-2"></i> Term of use</h6>
+                            class="feather-info bg-success text-white p-2 rounded-circle mr-2"></i> Kupon Saya</h6>
                 </div>
                 <div class="right ml-auto">
                     <h6 class="font-weight-bold m-0"><i class="feather-chevron-right"></i></h6>

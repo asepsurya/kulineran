@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Askbootstrap">
     <meta name="author" content="Askbootstrap">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" type="image/png" href="img/fav.png">
-    <title>Kulineran Tasik</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <link rel="icon" type="image/png" href="{{ asset('img/fav.png') }}">
+    <title>eFoody | Food & Delivery</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/slick/slick.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/slick/slick-theme.min.css') }}" />
-
+  
     <!-- Feather Icon-->
     <link href="{{ asset('vendor/icons/feather.css') }}" rel="stylesheet" type="text/css">
     <!-- Bootstrap core CSS -->
@@ -204,7 +204,6 @@ var countries = ["Bakso","Afghanistan","Albania","Algeria","Andorra","Angola","A
 autocomplete(document.getElementById("myInput"), countries);
     </script> --}}
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="{{ asset('vendor/slick/slick.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- slick Slider JS-->
@@ -214,7 +213,7 @@ autocomplete(document.getElementById("myInput"), countries);
     <!-- Custom scripts for all pages-->
     <script type="text/javascript" src="{{ asset('js/osahan.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    
+    <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 </body>
 
 </html>

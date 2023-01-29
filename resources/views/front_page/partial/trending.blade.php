@@ -1,7 +1,7 @@
   <!-- Trending this week -->
   <div class="pt-4 pb-2 title d-flex align-items-center">
     <h5 class="m-0">Menu Rekomendasi</h5>
-    <a class="font-weight-bold ml-auto" href="trending.html">View all <i class="feather-chevrons-right"></i></a>
+    <a class="font-weight-bold ml-auto" href="/search">View all <i class="feather-chevrons-right"></i></a>
 </div>
 <!-- slider -->
 <div class="trending-slider">
@@ -27,7 +27,15 @@
                       </a>
                         </h6>
                         <p class="text-gray mb-3"> {{ $produk->deskripsi }}</p>
-                        <p class="text-gray mb-3 time"><button type="button" class="btn btn-primary">Pesan</button><span class="float-right text-black-80"> <strong>Rp. {{ $produk->harga }}</strong> </span></p>
+                        <p class="text-gray mb-3 time">
+                            @if ($produk->varian == "")
+                            <a href="/addCart/item/{{ $produk->id }}">
+                                <button class="btn btn-primary "><span class="feather-shopping-cart"></span> Pesan</button>
+                            </a>
+                            @else
+                                <button data-bs-toggle="modal" data-bs-target="#detileProduk-{{ $produk->id }}"  class="btn btn-primary "><span class="feather-shopping-cart"></span> Pesan</button>
+                            @endif
+                            <span class="float-right text-black-80"> <strong>Rp. {{ $produk->harga }}</strong> </span></p>
                     </div>
                     {{-- <div class="list-card-badge">
                         <span class="badge badge-danger">OFFER</span> <small> Use Coupon OSAHAN50</small>
@@ -37,6 +45,64 @@
         </div> 
         @endif
     @endforeach
-    
-
 </div>
+<!-- Modal -->
+@foreach ($rekomendasi as $item)
+<div class="modal fade" id="detileProduk-{{ $item->id }}" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="detileProdukLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm ">
+        <div class="modal-content">
+            <div class="modal-body m-0 p-0">
+                <div class="favourite-heart text-danger position-absolute p-3">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div style="
+                background-image: url('/storage/{{ $item->gambar }}');
+                max-height:200px;
+                overflow:hidden;
+                height:200px; 
+                background-repeat: no-repeat;
+                background-size: cover; ">
+                </div>
+                <form action="/addCartVarian" method="post">
+                    @csrf
+                <div class="row m-0">
+                    <h6 class="p-3 m-0 bg-light w-100">{{ $item->namaProduk }} <small class="text-black-50">{{ $item->kategori->jenisKategori }}</small></h6>
+                    <div class="col-md-12 px-0 border-top">
+                    
+                    
+                    @php
+                    //Contoh Penggunaan Fungsi explode ()
+                    $string = $item->varian;
+                    $PecahStr = explode(",", $string);
+                    @endphp
+                   <div class="m-2">
+                        <label for="">Pilih Varian / Toping</label>
+                        <select name="varian" id="varian" class="form-control">
+                            @php
+                            for ( $i = 0; $i < count( $PecahStr ); $i++ ) { echo' <option value="'.$PecahStr[$i].'">'.$PecahStr[$i].'</option>';
+                                }
+                                @endphp
+                    
+                        </select>
+                    </div>
+                    
+                </div>
+            </div>
+                
+            </div>
+            <div class="modal-footer p-0 m-0">
+                <input type="text" name="idProduk" id="idProduk" value="{{ $item->id }}" hidden>
+                <button  type="submit" class="btn btn-primary btn-block">Pesan</button></a>
+            </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+   
+@endforeach
+
+
