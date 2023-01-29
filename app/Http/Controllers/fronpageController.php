@@ -11,6 +11,7 @@ class fronpageController extends Controller
 {
     public function index(){
         return view('front_page.index',[
+            'latestProduk'=>Produk::paginate(3),
             'produk'=>Produk::where('status','1')->paginate(8)->withQueryString(),
             'rekomendasi'=>Produk::where('rekomendasi','on')->get(),
             'kategori'=>kategori::all()

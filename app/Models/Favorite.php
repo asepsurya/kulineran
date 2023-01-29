@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pesanan extends Model
+class Favorite extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
@@ -13,5 +13,4 @@ class Pesanan extends Model
     public function produk(){
         return $this->belongsTo('App\Models\Produk','idProduk');
     }
-
 }

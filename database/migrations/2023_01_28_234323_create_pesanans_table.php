@@ -19,10 +19,12 @@ return new class extends Migration
             $table->string('idProduk');
             $table->string('varian');
             $table->string('qty');
-            $table->string('Totalbayar');
-            $table->string('ongkir');
+            $table->string('Totalbayar')->nullable();
+            $table->string('ongkir')->nullable();
             $table->string('diskon')->nullable();
             $table->string('pengiriman')->nullable();
+            $table->string('notes')->nullable();
+            $table->string('status')->default('unpaid');
             $table->string('idUser');
             $table->timestamps();
         });

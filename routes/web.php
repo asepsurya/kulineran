@@ -9,6 +9,9 @@ use App\Http\Controllers\fronpageController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\cartController;
 use App\Http\Controllers\cuponsController;
+use App\Http\Controllers\checkoutController;
+use App\Http\Controllers\pembayaranController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +32,9 @@ Route::post('/addCartVarian',[cartController::class,'addCartVarian'])->middlewar
 Route::post('/cart/qtyUpdate/{id}',[cartController::class,'autoQty'])->middleware('auth');
 Route::get('/hapusItem/{id}',[cartController::class,'hapusItemCart'])->middleware('auth');
 // checkout
-// Route::post('/checkout',[checkoutController::class,'index'])->middleware('auth');
+Route::post('/checkout',[checkoutController::class,'index'])->middleware('auth');
+Route::get('/checkout/success/{id}',[checkoutController::class,'Checkoutsuccess'])->middleware('auth');
+Route::post('/midtrans-callback',[checkoutController::class,'callback'])->middleware('auth');
 // cupon
 Route::get('/coupons',[cuponsController::class,'index'])->middleware('auth');
 // profile
@@ -37,6 +42,8 @@ Route::get('/profile',[profileController::class,'index'])->middleware('auth');;
 Route::post('/profile/ubahPhoto',[profileController::class,'ubahPhoto'])->middleware('auth');
 Route::post('/profile/update',[profileController::class,'ProfileUpdate'])->middleware('auth');
 Route::post('/profile/ubahPassword',[profileController::class,'ubahPassword'])->middleware('auth');
+Route::get('/orderstatus',[profileController::class,'orderstatus'])->middleware('auth');
+Route::get('/orderdetile',[profileController::class,'orderdetile'])->middleware('auth');
 
 // address
 Route::get('/address',[profileController::class,'address'])->middleware('auth');

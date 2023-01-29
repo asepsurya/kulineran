@@ -45,4 +45,7 @@ class User extends Authenticatable
     public function cart(){
         return $this->hasMany('App\Models\cart','idUser');
     }
+    public function address(){
+        return $this->hasMany('App\Models\Alamat','idUser');
+    }
 }

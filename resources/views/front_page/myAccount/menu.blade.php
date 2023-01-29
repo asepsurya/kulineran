@@ -43,7 +43,7 @@
                 </div>
             </a>
 
-            <a href="faq.html" class="d-flex w-100 align-items-center border-bottom px-3 py-4">
+            <a href="/orderstatus" class="d-flex w-100 align-items-center border-bottom px-3 py-4">
                 <div class="left mr-3">
                     <h6 class="font-weight-bold m-0 text-dark"><i
                             class="feather-truck bg-danger text-white p-2 rounded-circle mr-2"></i> Pesananmu

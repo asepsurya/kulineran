@@ -51,8 +51,8 @@
                     </div>
                 </div>
                 <div class="rounded shadow-sm bg-white overflow-hidden">
-                    <h6 class="p-3 m-0 bg-light w-100"><span class="feather-shopping-cart"></span> Keranjang Belanja
-                        <span class="feather-info text-primary" role="button" data-toggle="popover" title="Informasi"
+                    <h6 class="p-3 m-0 bg-primary text-white w-100"><span class="feather-shopping-cart"></span> Keranjang Belanja
+                        <span class="feather-info " role="button" data-toggle="popover" title="Informasi"
                             data-content="(Keranjang Belanja) Semua Pesananmu disimpan Disini"></span>
                     </h6>
                     <div class="m-3">
@@ -87,7 +87,7 @@
                                     @endphp
                                     @php $SubTotal += $totharga @endphp
 
-                                    Rp. {{ $totharga }}
+                                    Rp. {{ number_format($totharga,0,".",".")  }}
                                 </p>
                             </span>
                             @if ($cart->varian != NULL)
@@ -104,7 +104,7 @@
                                 <div class="media-body">
 
                                     <h6 class="mb-1">{{ $cart->produk->namaProduk }}</h6>
-                                    <p class="text-muted mb-0">Rp. {{ $cart->produk->harga }} x{{ $cart->qty }}</p>
+                                    <p class="text-muted mb-0">Rp. {{ number_format($cart->produk->harga,0,".",".")  }} x{{ $cart->qty }}</p>
 
                                 </div>
                             </div>
@@ -137,16 +137,16 @@
                         data-content="(Pemesanan Langsung) kamu akan mendapatkan Nomor Antrian, (Delivery Order) Kami akan mengantar pesananmu ke rumah kamu. "></span>
                 </h6>
                 <div class="bg-white p-3 py-3 border-bottom clearfix">
-
-
+                    {{-- form start --}}
+                  
                     <div class="btn-group btn-group-toggle w-100 mb-3" data-toggle="buttons">
                         <label class="btn btn-outline-secondary active">
-
-                            <input type="radio" name="delivery" id="option" checked="" value="1"> Pemesanan Langsung
+                            <input type="hidden" name="pengiriman" value="1">
+                            <input type="radio" name="pengiriman" id="option" checked="" value="1"> Pemesanan Langsung
                         </label>
                         <label class="btn btn-outline-secondary">
-
-                            <input type="radio" name="delivery" id="option2" value="2"> Delivery Order
+                            <input type="hidden" name="pengiriman" value="2">
+                            <input type="radio" name="pengiriman" id="option2" value="2"> Delivery Order
                         </label>
                     </div>
                
@@ -160,7 +160,7 @@
                         <div class="input-group-prepend"><span class="input-group-text"><i
                                     class="feather-message-square"></i></span></div>
                         <textarea placeholder="Any suggestions? We will pass it on..." aria-label="With textarea"
-                            class="form-control"></textarea>
+                            class="form-control" id="selectbox"></textarea>
                     </div>
                 </div>
 
@@ -169,18 +169,25 @@
                     <div class="bg-white p-3 clearfix border-bottom">
                         <input type="hidden" name="noPesanan" id="" value="{{ rand() }}">
                         <p class="mb-1">Total Pesanan <span class="float-right text-dark"></span>
-                            <span class="float-right text-dark"> Rp. {{ $SubTotal }} </span>
+                            <span class="float-right text-dark"> Rp. {{ number_format($SubTotal,0,".",".")  }} </span>
                         </p>
                         <p class="mb-1 text-success">Total Discount<span class="float-right text-success">0</span></p>
                         <hr>
-                        <h6 class="font-weight-bold mb-0">TO PAY <span class="float-right">{{ ($SubTotal+12000)}}</span>
+                        <h6 class="font-weight-bold mb-0">TO PAY <span class="float-right">Rp.{{ number_format($SubTotal,0,".",".")}}</span>
                         </h6>
                     </div>
                     <div class="p-3">
                         <form action="/checkout" method="post">
                             @csrf
+                            <input type="text" name="pengiriman" value="Pemesanan Langsung" hidden>
+                            <input type="text" name="noPesanan" value="{{ $noPesanan }}" hidden>
+                            <input type="text" name="Totalbayar" value="{{ $SubTotal }}" hidden>
+                            <input type="text" name="ongkir" value="0" hidden>
+                            <input type="text" name="diskon" value="0" hidden>
+                            <input id="catatan" type="text" name="notes" hidden>
+                            
                             <button type="submit" class="btn btn-success btn-block btn-lg">
-                                Bayar $1329 <i class="feather-arrow-right"></i>
+                                <span class="feather-shopping-cart"></span> Bayar Rp.{{ number_format($SubTotal,0,".",".")}}<i class="feather-arrow-right"></i>
                             </button>
                         </form>
                     </div>
@@ -192,22 +199,28 @@
                     <div class="bg-white p-3 clearfix border-bottom">
                         <input type="hidden" name="noPesanan" id="" value="{{ rand() }}">
                         <p class="mb-1">Total Pesanan <span class="float-right text-dark"></span>
-                            <span class="float-right text-dark"> Rp. {{ $SubTotal }} </span>
+                            <span class="float-right text-dark"> Rp. {{ number_format($SubTotal,0,".",".")}} </span>
                         </p>
 
                         <p class="mb-1">Delivery Fee<span class="text-info ml-1"><i
-                                    class="feather-info"></i></span><span class="float-right text-dark">Rp.12000</span>
+                                    class="feather-info"></i></span><span class="float-right text-dark">Rp.{{ number_format(12000,0,".",".")}}</span>
                         </p>
                         <p class="mb-1 text-success">Total Discount<span class="float-right text-success">0</span></p>
                         <hr>
-                        <h6 class="font-weight-bold mb-0">TO PAY <span class="float-right">{{ ($SubTotal+12000)}}</span>
+                        <h6 class="font-weight-bold mb-0"> TO PAY <span class="float-right">Rp. {{ number_format($SubTotal+12000,0,".",".")}}</span>
                         </h6>
                     </div>
                     <div class="p-3">
                         <form action="/checkout" method="post">
                             @csrf
+                            <input type="text" name="pengiriman" value="Delivery Order" hidden>
+                            <input type="text" name="noPesanan" value="{{ $noPesanan }}" hidden>
+                            <input type="text" name="Totalbayar" value="{{ $SubTotal }}" hidden>
+                            <input type="text" name="ongkir" value="12000" hidden>
+                            <input type="text" name="diskon" value="0" hidden>
+                            <input id="catatan2" type="text" name="notes" hidden>
                             <button type="submit" class="btn btn-success btn-block btn-lg">
-                                Bayar $1329 <i class="feather-arrow-right"></i>
+                                <span class="feather-shopping-cart"></span> Bayar Rp.{{ number_format($SubTotal,0,".",".")}}<i class="feather-arrow-right"></i>
                             </button>
                         </form>
                     </div>
@@ -220,9 +233,15 @@
     </div>
 </div>
 <script>
+    $("#selectbox, :text:not([readonly])").on("input change", function(e) {
+  $("#catatan").val(this.value)
+  $("#catatan2").val(this.value)
+})
+</script>
+<script>
     $("div.desc").hide();
      $("div.a").show();
-    $("input[name$='delivery']").click(function() {
+    $("input[name$='pengiriman']").click(function() {
             $("div.a").show();
             var test = $(this).val();
             

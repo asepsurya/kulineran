@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 use App\Models\Alamat;
 use App\Models\cart;
+use App\Models\pesanan;
 use Illuminate\Http\Request;
 
 class cartController extends Controller
 {
     public function addCart($id){
+        
+        // mengambil data barang dengan kode paling besar
+        $query = pesanan::max('noPesanan');
+        $urutan = 0;
+        $urutan =$query+1;
+
         $data = cart::where(['idProduk'=> $id,'idUser'=>auth()->user()->id]);
         $a = $data->get();
         if($a->count()){
@@ -18,6 +25,7 @@ class cartController extends Controller
         }else{
             $qty =1;
             cart::create([
+                'noPesanan'=>$urutan,
                 'idProduk'=>$id,
                 'varian'=>'',
                 'qty'=>$qty,
@@ -29,6 +37,11 @@ class cartController extends Controller
       } 
        
     public function addCartVarian(request $request){
+              
+        // mengambil data barang dengan kode paling besar
+        $query = pesanan::max('noPesanan');
+        $urutan = 0;
+        $urutan =$query+1;
 
         $data = cart::where(['idProduk'=> $request->idProduk,'idUser'=>auth()->user()->id,'varian'=>$request->varian]);
         $a = $data->get();
@@ -39,6 +52,7 @@ class cartController extends Controller
             }
         }else{
             cart::create([
+                'noPesanan'=>$urutan,
                 'idProduk'=>$request->idProduk,
                 'varian'=>$request->varian,
                 'qty'=>'1',
@@ -56,7 +70,12 @@ class cartController extends Controller
     }
     
     public function cart(){
+        // mengambil data barang dengan kode paling besar
+        $query = pesanan::max('noPesanan');
+        $urutan = 0;
+        $urutan =$query+1;
         return view('front_page.cart.cart',[
+            'noPesanan'=>$urutan,
             'title'=>'Keranjang Belanja',
             'cart'=>cart::where('idUser',auth()->user()->id)->get(),
             'alamat'=>Alamat::where([

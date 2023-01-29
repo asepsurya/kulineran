@@ -11,7 +11,8 @@
     <title>eFoody | Food & Delivery</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/slick/slick.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/slick/slick-theme.min.css') }}" />
-  
+    {{-- midtrans --}}
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-YQi0trqdcN4uV-M3"></script>
     <!-- Feather Icon-->
     <link href="{{ asset('vendor/icons/feather.css') }}" rel="stylesheet" type="text/css">
     <!-- Bootstrap core CSS -->

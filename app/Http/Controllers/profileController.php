@@ -159,4 +159,11 @@ class profileController extends Controller
         echo $option;
     }
 
+    public function orderstatus(){
+        return view('front_page.myAccount.statusOrder');
+    }
+    public function orderdetile(){
+        return view('front_page.myAccount.detilestatusOrder');
+    }
+
 }
