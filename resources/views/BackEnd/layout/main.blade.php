@@ -19,7 +19,48 @@
   <script src="{{ asset('js/jquery.js') }}"></script>
 
   <style>
+  .checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.label {
+  width: 20px;
+  height: 10px;
+  background-color:#111;
+  display: flex;
+  border-radius:50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  transform: scale(1.5);
+}
+
+.ball {
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+/*  target the elemenent after the label*/
+.checkbox:checked + .label .ball{
+  transform: translateX(13px);
+}
+
+.fa-moon {
   
+  color: pink;
+}
+
+.fa-sun {
+  color: yellow;
+}
     .drop-container {
       position: relative;
       display: flex;
@@ -54,7 +95,7 @@
     }
   </style>
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini ">
   <div class="wrapper">
 
     <!-- Main Sidebar Container -->
@@ -121,6 +162,14 @@ $(document).ready(function() {
       theme: 'bootstrap4'
     });
 });
+      </script>
+
+      <script>
+        const checkbox = document.getElementById('checkbox');
+
+checkbox.addEventListener('change', ()=>{
+  document.body.classList.toggle('dark-mode');
+})
       </script>
 </body>
 

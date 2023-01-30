@@ -30,12 +30,25 @@
         </div>
       </li>
 
-    
+      <li class="nav-item">
+        <div class="mt-3">
+          <input type="checkbox" class="checkbox" id="checkbox">
+          <label for="checkbox" class="label">
+           
+            {{-- <i class="fas fa-moon"></i>
+            <i class='fas fa-sun '></i> --}}
+            <div class='ball'>
+          </label>
+        </div>
+        
+       </li>
+
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
+    
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
           <i class="fas fa-th-large"></i>

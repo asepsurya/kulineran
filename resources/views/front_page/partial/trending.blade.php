@@ -11,7 +11,7 @@
             <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
                 <div class="list-card-image">
                     <div class="star position-absolute"><span class="badge badge-success">{{ $produk->kategori->jenisKategori }}</span></div>
-                    <div class="favourite-heart text-danger position-absolute"><a href="#"><i class="feather-heart"></i></a></div>
+                    <div class="favourite-heart text-danger position-absolute"><a href="/addfavorites/{{ $produk->id }}/{{ $produk->kategori->id }}"><i class="feather-heart"></i></a></div>
                     <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
                     <div style="background-image: url('/storage/{{ $produk->gambar }}');
                         max-height:200px;

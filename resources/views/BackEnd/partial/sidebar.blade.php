@@ -16,7 +16,7 @@
         <div class="info">
           <a href="#" class="d-block">{{ auth()->user()->nama_lengkap }}</a>
         </div>
-      </div>';
+      </div>
 
       <!-- SidebarSearch Form -->
       <div id="topheader">

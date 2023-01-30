@@ -44,6 +44,8 @@ Route::post('/profile/update',[profileController::class,'ProfileUpdate'])->middl
 Route::post('/profile/ubahPassword',[profileController::class,'ubahPassword'])->middleware('auth');
 Route::get('/orderstatus',[profileController::class,'orderstatus'])->middleware('auth');
 Route::get('/orderdetile',[profileController::class,'orderdetile'])->middleware('auth');
+Route::get('/favorites',[profileController::class,'favorites'])->middleware('auth');
+Route::get('/addfavorites/{idProduk}/{idKategori}',[profileController::class,'addfavorites'])->middleware('auth');
 
 // address
 Route::get('/address',[profileController::class,'address'])->middleware('auth');

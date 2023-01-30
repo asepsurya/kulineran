@@ -13,4 +13,7 @@ class Favorite extends Model
     public function produk(){
         return $this->belongsTo('App\Models\Produk','idProduk');
     }
+    public function kategori(){
+        return $this->belongsTo('App\Models\kategori','idKategori');
+    }
 }

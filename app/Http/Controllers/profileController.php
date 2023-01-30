@@ -7,6 +7,9 @@ use App\Models\Province;
 use App\Models\Regency;
 use App\Models\District;
 use App\Models\Village;
+use App\Models\Favorite;
+use App\Models\Produk;
+use App\Models\kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -164,6 +167,28 @@ class profileController extends Controller
     }
     public function orderdetile(){
         return view('front_page.myAccount.detilestatusOrder');
+    }
+
+    public function favorites(){
+        return view('front_page.myAccount.favorites',[
+            'Favorite' =>Favorite::where('idUser',auth()->user()->id)->paginate(8),
+            'kategori'=>kategori::all()
+        ]);
+    }
+    public function addfavorites($idProduk, $idKategori){
+       $data= Favorite::where(['idUser'=>auth()->user()->id,'idProduk'=>$idProduk])->get();
+        if($data->count()){
+            return redirect('/favorites')->with('sudahAda','Data Sudah Ada');
+        }else{
+            Favorite::create([
+                'idUser'=>auth()->user()->id,
+                'idProduk'=>$idProduk,
+                'idKategori'=>$idKategori
+            ]);
+            return redirect('/favorites');
+            
+        }
+       
     }
 
 }
