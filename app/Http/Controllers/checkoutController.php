@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\cart;
 use App\Models\pesanan;
 use App\Models\Alamat;
+use App\Models\myorder;
 use Illuminate\Http\Request;
 
 class checkoutController extends Controller
@@ -22,13 +23,21 @@ class checkoutController extends Controller
             'idUser'=> auth()->user()->id,
             'noPesanan'=>$request->noPesanan
             ])->update([
-                'Totalbayar'=>$request->Totalbayar,
+                
                 'ongkir'=>$request->ongkir,
-                'diskon'=>$request->diskon,
-                'pengiriman'=>$request->pengiriman,
-                'notes'=>$request->notes,
-                'status'=>'unpaid'
+                'diskon'=>$request->diskon,  
+                
             ]);
+        myorder::create([
+            'noPesanan'=>$request->noPesanan,
+            'idUser'=>auth()->user()->id,
+            'qty'=>$request->qty,
+            'notes'=>$request->notes,
+            'status'=>'unpaid',
+            'statusorder'=>'1',
+            'Totalbayar'=>$request->Totalbayar,
+            'pengiriman'=>$request->pengiriman,
+        ]);
        return redirect('/checkout/success/'.encrypt($request->noPesanan));
     }
     public function Checkoutsuccess($id){
@@ -43,7 +52,7 @@ class checkoutController extends Controller
     // Set 3DS transaction for credit card to true
     \Midtrans\Config::$is3ds = true;
         
-    $data = pesanan::where(['idUser'=>auth()->user()->id,'noPesanan'=>$id2])->get();
+    $data = myorder::where(['idUser'=>auth()->user()->id,'noPesanan'=>$id2])->get();
     
     foreach($data as $item){
    
@@ -64,7 +73,7 @@ class checkoutController extends Controller
     $snapToken = \Midtrans\Snap::getSnapToken($params);
 
         return view('front_page.transaction.successTrans',[
-            'token'=>$snapToken,
+            'token'=> $snapToken,
             'alamat'=>Alamat::where([
                 'idUser'=> auth()->user()->id,
                 'default'=> 'on'
@@ -73,7 +82,12 @@ class checkoutController extends Controller
             'pesanan'=>pesanan::where([
                 'idUser'=>auth()->user()->id,
                 'noPesanan'=>$id2
-                ])->get()
+                ])->get(),
+
+             'order'=>myorder::where([
+                'idUser'=>auth()->user()->id,
+                'noPesanan'=>$id2
+                ])->get()    
         ]);
     }
     public function callback(request $request){

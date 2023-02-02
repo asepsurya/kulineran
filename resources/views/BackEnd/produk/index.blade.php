@@ -140,12 +140,12 @@
                                 
                         @endforeach
                     </tbody>
-
+               
                 </table>
             </div>
             <!-- /.card-body -->
         </div>
-
+    </div>
     </div><!-- /.container-fluid -->
 </div>
 

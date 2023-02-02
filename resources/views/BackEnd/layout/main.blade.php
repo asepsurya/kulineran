@@ -112,6 +112,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       @yield('container')
+      @include('BackEnd.partial.alert')
     </div>
 
     <!-- /.content-wrapper -->
@@ -148,6 +149,8 @@
   <!-- AdminLTE App -->
   <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
   <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
+  <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
+
   <script>
     $(document).ready(function() {
             $('.select2').select2({

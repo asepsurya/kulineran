@@ -96,18 +96,16 @@
             </a>
           </li>
            
-          <li class="nav-item menu-close">
-            <a href="#" class="nav-link">
+          <li class="nav-item {{ Request::is('order*') ? 'menu-open' : 'menu-close'}} ">
+            <a href="#" class="nav-link {{ Request::is('order*') ? 'active' : ''}}">
               <i class="nav-icon fas fa-hand-holding-usd fa-boxes"></i>
               <p>
                 Transaksi 
-               
-                <span class="right badge badge-danger">20</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../pages/order/index" class="nav-link ">
+                <a href="/order" class="nav-link {{ Request::is('order*') ? 'active' : ''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Order</p>
                 </a>

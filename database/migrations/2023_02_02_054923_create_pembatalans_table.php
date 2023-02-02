@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('favorites', function (Blueprint $table) {
+        Schema::create('pembatalans', function (Blueprint $table) {
             $table->id();
+            $table->string('noPesanan')->unique();
             $table->string('idUser');
-            $table->string('idProduk');
-            $table->string('nama_produk');
-            $table->string('idKategori');
-            
+            $table->string('Alasan')->nullable();
+            $table->string('other')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('favorites');
+        Schema::dropIfExists('pembatalans');
     }
 };

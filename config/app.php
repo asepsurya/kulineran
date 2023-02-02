@@ -197,6 +197,7 @@ return [
 
         // Provider Lain
         AzisHapidin\IndoRegion\IndoRegionServiceProvider::class,
+        Alfa6661\AutoNumber\AutoNumberServiceProvider::class,
 
     ],
 

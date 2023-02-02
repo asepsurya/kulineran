@@ -13,19 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pesanans', function (Blueprint $table) {
+        Schema::create('myorders', function (Blueprint $table) {
             $table->id();
             $table->string('noPesanan');
-            $table->string('idProduk');
-            $table->string('varian');
-            $table->string('qty');
-            // $table->string('Totalbayar')->nullable();
-            $table->string('ongkir')->nullable();
-            $table->string('diskon')->nullable();
-            // $table->string('pengiriman')->nullable();
-            // $table->string('notes')->nullable();
-            // $table->string('status')->default('unpaid');
             $table->string('idUser');
+            $table->string('qty');
+            $table->string('status')->default('unpaid');
+            $table->string('statusorder');
+            $table->string('notes');
+            $table->string('pengiriman')->nullable();
+            $table->string('Totalbayar');
             $table->timestamps();
         });
     }
@@ -37,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pesanans');
+        Schema::dropIfExists('myorders');
     }
 };

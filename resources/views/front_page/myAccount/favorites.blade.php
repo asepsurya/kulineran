@@ -20,12 +20,16 @@
 </div>
 <div class="container">
     <div class="search py-5">
-        <div class="input-group mb-4">
-            <input type="text" class="form-control form-control-lg input_search border-right-0" id="inlineFormInputGroup" placeholder="Cari Produk...">
-            <div class="input-group-prepend">
-                <div class="btn input-group-text bg-white border_search border-left-0 text-primary"><i class="feather-search"></i></div>
+        <form action="/search" method="get">
+            <div class="input-group mb-4">
+                <input type="text" class="form-control form-control-lg input_search border-right-0" id="inlineFormInputGroup" placeholder="Cari Produk..." name="favorite">
+                <div class="input-group-prepend">
+                    <div class="btn input-group-text bg-white border_search border-left-0 text-primary"><i class="feather-search"></i></div>
+                    <button type="submit" hidden></button>
+                </div>
             </div>
-        </div>
+        </form>
+       
         <div class="row">
             <div class="col md-6">
                 <ul class="nav nav-tabs border-0" id="myTab" role="tablist">
@@ -58,7 +62,7 @@
                                 <div class="list-card-image">
                                     <div class="star position-absolute"><span class="badge badge-success">• {{
                                             $item->kategori->jenisKategori }}</span></div>
-                                    <div class="favourite-heart text-danger position-absolute"><a href="#"><i
+                                    <div class="favourite-heart text-danger position-absolute"><a href="/deletefavorites/{{ $item->id }}"><i
                                                 class="feather-trash-2"></i></a></div>
                                     {{-- <div class="member-plan position-absolute"><span
                                             class="badge badge-dark">Promoted</span></div> --}}

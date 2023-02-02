@@ -5,16 +5,25 @@ use App\Models\Alamat;
 use App\Models\cart;
 use App\Models\pesanan;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 class cartController extends Controller
 {
+    
     public function addCart($id){
-        
-        // mengambil data barang dengan kode paling besar
-        $query = pesanan::max('noPesanan');
-        $urutan = 0;
-        $urutan =$query+1;
+        // nomor Otomatis
+        $now =Carbon::now();
+        $thnBulan = $now->year.$now->month;
+        $cekdata = pesanan::count();
 
+        if($cekdata == 0){
+            $nourut = 10000001;
+            $nomor ='EFD'.$thnBulan.$nourut;
+        }else{
+            $ambil = pesanan::all()->last();
+            $urut=(int)substr($ambil->noPesanan, -8) + 1 ;
+            $nomor ='EFD'.$thnBulan.$urut;
+        }
+        // aksi
         $data = cart::where(['idProduk'=> $id,'idUser'=>auth()->user()->id]);
         $a = $data->get();
         if($a->count()){
@@ -25,7 +34,7 @@ class cartController extends Controller
         }else{
             $qty =1;
             cart::create([
-                'noPesanan'=>$urutan,
+                'noPesanan'=>$nomor,
                 'idProduk'=>$id,
                 'varian'=>'',
                 'qty'=>$qty,
@@ -38,10 +47,19 @@ class cartController extends Controller
        
     public function addCartVarian(request $request){
               
-        // mengambil data barang dengan kode paling besar
-        $query = pesanan::max('noPesanan');
-        $urutan = 0;
-        $urutan =$query+1;
+          // nomor Otomatis
+          $now =Carbon::now();
+          $thnBulan = $now->year.$now->month;
+          $cekdata = pesanan::count();
+  
+          if($cekdata == 0){
+              $nourut = 10000001;
+              $nomor ='EFD'.$thnBulan.$nourut;
+          }else{
+              $ambil = pesanan::all()->last();
+              $urut=(int)substr($ambil->noPesanan, -8) + 1 ;
+              $nomor ='EFD'.$thnBulan.$urut;
+          }
 
         $data = cart::where(['idProduk'=> $request->idProduk,'idUser'=>auth()->user()->id,'varian'=>$request->varian]);
         $a = $data->get();
@@ -52,7 +70,7 @@ class cartController extends Controller
             }
         }else{
             cart::create([
-                'noPesanan'=>$urutan,
+                'noPesanan'=>$nomor,
                 'idProduk'=>$request->idProduk,
                 'varian'=>$request->varian,
                 'qty'=>'1',
@@ -70,12 +88,21 @@ class cartController extends Controller
     }
     
     public function cart(){
-        // mengambil data barang dengan kode paling besar
-        $query = pesanan::max('noPesanan');
-        $urutan = 0;
-        $urutan =$query+1;
+          // nomor Otomatis
+          $now =Carbon::now();
+          $thnBulan = $now->year.$now->month;
+          $cekdata = pesanan::count();
+  
+          if($cekdata == 0){
+              $nourut = 10000001;
+              $nomor ='EFD'.$thnBulan.$nourut;
+          }else{
+              $ambil = pesanan::all()->last();
+              $urut=(int)substr($ambil->noPesanan, -8) + 1 ;
+              $nomor ='EFD'.$thnBulan.$urut;
+          }
         return view('front_page.cart.cart',[
-            'noPesanan'=>$urutan,
+            'noPesanan'=>$nomor,
             'title'=>'Keranjang Belanja',
             'cart'=>cart::where('idUser',auth()->user()->id)->get(),
             'alamat'=>Alamat::where([

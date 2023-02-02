@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pesanan;
-use App\Http\Requests\StorePesananRequest;
-use App\Http\Requests\UpdatePesananRequest;
+use App\Models\Pembatalan;
+use App\Http\Requests\StorePembatalanRequest;
+use App\Http\Requests\UpdatePembatalanRequest;
 
-class PesananController extends Controller
+class PembatalanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class PesananController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorePesananRequest  $request
+     * @param  \App\Http\Requests\StorePembatalanRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePesananRequest $request)
+    public function store(StorePembatalanRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class PesananController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Pesanan  $pesanan
+     * @param  \App\Models\Pembatalan  $pembatalan
      * @return \Illuminate\Http\Response
      */
-    public function show(Pesanan $pesanan)
+    public function show(Pembatalan $pembatalan)
     {
         //
     }
@@ -53,10 +53,10 @@ class PesananController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Pesanan  $pesanan
+     * @param  \App\Models\Pembatalan  $pembatalan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pesanan $pesanan)
+    public function edit(Pembatalan $pembatalan)
     {
         //
     }
@@ -64,11 +64,11 @@ class PesananController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePesananRequest  $request
-     * @param  \App\Models\Pesanan  $pesanan
+     * @param  \App\Http\Requests\UpdatePembatalanRequest  $request
+     * @param  \App\Models\Pembatalan  $pembatalan
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePesananRequest $request, Pesanan $pesanan)
+    public function update(UpdatePembatalanRequest $request, Pembatalan $pembatalan)
     {
         //
     }
@@ -76,10 +76,10 @@ class PesananController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Pesanan  $pesanan
+     * @param  \App\Models\Pembatalan  $pembatalan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pesanan $pesanan)
+    public function destroy(Pembatalan $pembatalan)
     {
         //
     }

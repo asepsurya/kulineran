@@ -10,6 +10,9 @@ use App\Models\Village;
 use App\Models\Favorite;
 use App\Models\Produk;
 use App\Models\kategori;
+use App\Models\Pesanan;
+use App\Models\myorder;
+use App\Models\Pembatalan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -87,6 +90,7 @@ class profileController extends Controller
             'other'=>'',
             'default'=>''
         ]);
+       
         if($request->default == "on"){
             Alamat::where('idUser',$request->idUser)->update(['default'=> 'off']);
         }
@@ -163,10 +167,17 @@ class profileController extends Controller
     }
 
     public function orderstatus(){
-        return view('front_page.myAccount.statusOrder');
+        return view('front_page.myAccount.statusOrder',[
+           'myorder'=>myorder::where(['idUser'=>auth()->user()->id])->get(),
+           'pesanan'=>pesanan::where(['idUser'=>auth()->user()->id])->get()
+        ]);
     }
-    public function orderdetile(){
-        return view('front_page.myAccount.detilestatusOrder');
+    public function orderdetile($idPesanan){
+        return view('front_page.myAccount.detilestatusOrder',[
+            'pesanan'=>Pesanan::where('noPesanan',$idPesanan)->get(),
+            'myorder'=>myorder::where('noPesanan',$idPesanan)->get(),
+            'Alamat'=>Alamat::where(['idUser' => auth()->user()->id,'default'=>'on'])->get()
+        ]);
     }
 
     public function favorites(){
@@ -191,4 +202,18 @@ class profileController extends Controller
        
     }
 
+    public function deletefavorites($id){
+        Favorite::where('id',$id)->delete();
+        return redirect('/favorites');
+    }
+
+    public function ordercanceled(request $request){
+        Pembatalan::create([
+            'noPesanan'=>$request->noPesanan,
+            'idUser'=>auth()->user()->id,
+            'Alasan'=>$request->alasan,
+            'other'=>$request->other
+        ]);
+        return redirect()->back()->with('Berhasil','Data Berhasil diajukan');
+    }
 }

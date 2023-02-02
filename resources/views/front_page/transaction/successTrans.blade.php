@@ -21,21 +21,18 @@
                             $SubTotal = 0
                         @endphp
                         @foreach ($pesanan as $item )
+                         @foreach ($order as $a)
+                           @php $totBayar = $a->Totalbayar @endphp
+                           @php $pengiriman = $a->pengiriman @endphp
+                         @endforeach
                             @php $id_pesan = $item->noPesanan @endphp
-                            @php $pengiriman = $item->pengiriman @endphp
                             @php $tanggal_buat = $item->created_at @endphp
-                            @php $totBayar = $item->Totalbayar @endphp
                             @php $ongkir = $item->ongkir @endphp
                             @php $SubTotal += $item->produk->harga * $item->qty @endphp
                         @endforeach
-                        <p style="color: #7e8d9f;font-size: 20px;">Invoice >> <strong>ID: #0123-0{{ $id_pesan }}</strong></p>
+                        <p style="color: #7e8d9f;font-size: 20px;">Invoice >> <strong>ID: #{{ $id_pesan }}</strong></p>
                     </div>
-                      {{-- <div class="col-xl-3 float-end">
-                        <a class="btn btn-light text-capitalize border-0" data-mdb-ripple-color="dark"><i
-                            class="fas fa-print text-primary"></i> Print</a>
-                        <a class="btn btn-light text-capitalize" data-mdb-ripple-color="dark"><i
-                            class="far fa-file-pdf text-danger"></i> Export</a>
-                      </div> --}}
+                      
                       <hr>
                     </div>
               

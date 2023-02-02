@@ -40,7 +40,7 @@
                                 </div>
                                 @else
                                 <div class="container-fluid p-5" align="center">
-                                    <p>Alamat Pengiriman Belum ditambahkan, Tambahkan Sekarang..? </p>
+                                    <p>Alamat Pengiriman Belum disetel atau tidak dalam keadaan default, Jika belum ditambahkan, Tambahkan Sekarang..? </p>
                                     <a href="/address" class="btn btn-primary">+ Tambah</a>
                                 </div>
                                 @endif
@@ -185,7 +185,7 @@
                             <input type="text" name="ongkir" value="0" hidden>
                             <input type="text" name="diskon" value="0" hidden>
                             <input id="catatan" type="text" name="notes" hidden>
-                            
+                            <input id="qty" type="text" name="qty" value="{{ $cart->count() }}" hidden>
                             <button type="submit" class="btn btn-success btn-block btn-lg">
                                 <span class="feather-shopping-cart"></span> Bayar Rp.{{ number_format($SubTotal,0,".",".")}}<i class="feather-arrow-right"></i>
                             </button>
@@ -215,10 +215,11 @@
                             @csrf
                             <input type="text" name="pengiriman" value="Delivery Order" hidden>
                             <input type="text" name="noPesanan" value="{{ $noPesanan }}" hidden>
-                            <input type="text" name="Totalbayar" value="{{ $SubTotal }}" hidden>
+                            <input type="text" name="Totalbayar" value="{{ $SubTotal+12000 }}" hidden>
                             <input type="text" name="ongkir" value="12000" hidden>
                             <input type="text" name="diskon" value="0" hidden>
                             <input id="catatan2" type="text" name="notes" hidden>
+                            <input id="qty" type="text" name="qty" value="{{ $cart->count() }}" hidden>
                             <button type="submit" class="btn btn-success btn-block btn-lg">
                                 <span class="feather-shopping-cart"></span> Bayar Rp.{{ number_format($SubTotal,0,".",".")}}<i class="feather-arrow-right"></i>
                             </button>
