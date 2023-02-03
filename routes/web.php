@@ -11,6 +11,8 @@ use App\Http\Controllers\cartController;
 use App\Http\Controllers\cuponsController;
 use App\Http\Controllers\checkoutController;
 use App\Http\Controllers\orderController;
+use App\Http\Controllers\outletController;
+use App\Http\Controllers\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,14 +80,24 @@ Route::get('/login',[authenticationController::class,'index'])->middleware('gues
 Route::get('/register',[authenticationController::class,'register'])->middleware('guest');
 Route::post('/register/new',[authenticationController::class,'newMember']);
 Route::post('/logout',[authenticationController::class,'logout'])->middleware('auth');
-
 // Dashboard Route
 Route::get('/dashboard',[dashboardController::class,'index'])->middleware('auth','isAdmin');
 Route::get('/category',[categoryController::class,'index'])->middleware('auth','isAdmin');
 Route::get('/order',[orderController::class,'order'])->middleware('auth','isAdmin');
 Route::get('/order/detile/{noPesanan}/{idUser}',[orderController::class,'detileorder'])->middleware('auth','isAdmin');
 Route::get('/order/update',[orderController::class,'orderUpdate'])->middleware('auth','isAdmin');
+Route::get('/pembatalan',[orderController::class,'pembatalan'])->middleware('auth','isAdmin');
+Route::get('/order/pembatalan/{noPesanan}',[orderController::class,'AddPembatalan'])->middleware('auth','isAdmin');
+Route::get('/order/dibatalkan/{noPesanan}',[orderController::class,'dibatalkan'])->middleware('auth','isAdmin');
+// Outlet
+Route::get('/outlet',[outletController::class,'index'])->middleware('auth','isAdmin');
+Route::post('/outlet/new',[outletController::class,'newOutlet'])->middleware('auth','isAdmin');
+Route::get('/outlet/edit/{id}',[outletController::class,'editOutlet'])->middleware('auth','isAdmin');
+Route::post('/outlet/edit',[outletController::class,'updateOutlet'])->middleware('auth','isAdmin');
+Route::get('/outlet/hapus/{id}',[outletController::class,'hapusOutlet'])->middleware('auth','isAdmin');
 
+// Transaksi
+Route::get('/laporan',[LaporanController::class,'laporan'])->middleware('auth','isAdmin');
 
 
 

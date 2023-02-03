@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\myorder;
 use App\Models\Pesanan;
 use App\Models\Alamat;
+use App\Models\Pembatalan;
 use Illuminate\Http\Request;
 
 class orderController extends Controller
@@ -40,6 +41,25 @@ class orderController extends Controller
                 'statusorder'=>'4'
             ]);
         }
+        return redirect()->back()->with('Berhasil','Berhasil Disimpan');
+    }
+
+    public function pembatalan(){
+        return view('BackEnd.pembatalan.pembatalan',[
+            'title'=>'Riwayat Pembatalan',
+            'pembatalan'=>Pembatalan::all()
+        ]);
+    }
+
+    public function AddPembatalan($noPesanan){
+        Pembatalan::where('noPesanan',$noPesanan)->update(['status'=>'Pengajuan Diterima']);
+        myorder::where('noPesanan',$noPesanan)->update(['statusorder'=>'5']);
+        return redirect()->back()->with('Berhasil','Berhasil Disimpan');
+    }
+    
+    public function dibatalkan($noPesanan){
+        Pembatalan::where('noPesanan',$noPesanan)->update(['status'=>'Pengajuan Ditolak']);
+      
         return redirect()->back()->with('Berhasil','Berhasil Disimpan');
     }
 }

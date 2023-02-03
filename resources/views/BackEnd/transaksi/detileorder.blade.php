@@ -12,8 +12,8 @@
             </div><!-- /.col -->
             <div class="col-sm-6 " align="right">
                 <div class="btn-group">
-                    <a href="/order"><button class="btn btn-default">Kembali</button></a>
-                    <button class="btn btn-primary">Tahap Selanjutnya</button>
+                    <a href="/order"><button class="btn btn-primary">Kembali</button></a>
+                    
                 </div>
                
             </div><!-- /.col -->

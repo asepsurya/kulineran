@@ -31,96 +31,78 @@
                             href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile"
                             aria-selected="false">Banner Depan</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill"
-                            href="#custom-tabs-four-messages" role="tab" aria-controls="custom-tabs-four-messages"
-                            aria-selected="false">Messages</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill"
-                            href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings"
-                            aria-selected="false">Settings</a>
-                    </li>
+                    
                 </ul>
             </div>
-            <div class="card-body">
+            <div class="card-body p-0 m-0">
                 <div class="tab-content" id="custom-tabs-four-tabContent">
                     <div class="tab-pane fade active show" id="custom-tabs-four-home" role="tabpanel"
                         aria-labelledby="custom-tabs-four-home-tab">
                         <div class="card-body table-responsive p-0">
-                            <button class="btn btn-primary">+ Produk</button>
+                          
                             <table class="table table-hover text-nowrap">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>User</th>
-                                        <th>Date</th>
-                                        <th>Status</th>
-                                        <th>Reason</th>
+                                        <th>#</th>
+                                        <th>Produk</th>
+                                        <th>kategori</th>
+                                        <th>harga</th>
+                                        <th>Deskripsi Produk</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+                                    @foreach ($produk as $item)
+                               
                                     <tr>
-                                        <td>183</td>
-                                        <td>John Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-success">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                        <td>{{ $no++ }}</td>
+                                        <td>{{ $item->namaProduk }}</td>
+                                        <td>{{ $item->kategori->jenisKategori }}</td>
+                                        <td><span class="tag tag-success">{{ $item->harga }}</span></td>
+                                        <td>{{ $item->deskripsi }}</td>
                                     </tr>
-                                    <tr>
-                                        <td>219</td>
-                                        <td>Alexander Pierce</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-warning">Pending</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>657</td>
-                                        <td>Bob Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-primary">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>175</td>
-                                        <td>Mike Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-danger">Denied</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
+                                           
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel"
                         aria-labelledby="custom-tabs-four-profile-tab">
-                        Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus ut
-                        ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                        Maecenas sollicitudin, nisi a luctus interdum, nisl ligula placerat mi, quis posuere purus
-                        ligula eu lectus. Donec nunc tellus, elementum sit amet ultricies at, posuere nec nunc. Nunc
-                        euismod pellentesque diam.
+                        <table class="table table-hover text-nowrap">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Handle</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                              </tr>
+                            </tbody>
+                          </table>
                     </div>
-                    <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel"
-                        aria-labelledby="custom-tabs-four-messages-tab">
-                        Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus volutpat augue
-                        id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce nec hendrerit sem, ac
-                        tristique nulla. Integer vestibulum orci odio. Cras nec augue ipsum. Suspendisse ut velit
-                        condimentum, mattis urna a, malesuada nunc. Curabitur eleifend facilisis velit finibus
-                        tristique. Nam vulputate, eros non luctus efficitur, ipsum odio volutpat massa, sit amet
-                        sollicitudin est libero sed ipsum. Nulla lacinia, ex vitae gravida fermentum, lectus ipsum
-                        gravida arcu, id fermentum metus arcu vel metus. Curabitur eget sem eu risus tincidunt eleifend
-                        ac ornare magna.
-                    </div>
-                    <div class="tab-pane fade" id="custom-tabs-four-settings" role="tabpanel"
-                        aria-labelledby="custom-tabs-four-settings-tab">
-                        Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis
-                        ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate.
-                        Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec
-                        interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at
-                        consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst.
-                        Praesent imperdiet accumsan ex sit amet facilisis.
-                    </div>
+                    
                 </div>
             </div>
 

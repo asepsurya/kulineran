@@ -257,11 +257,22 @@
                                                                 <a class="btn btn-outline-primary px-3"  data-toggle="modal" data-target="#cancleOrder-{{ $item->noPesanan }}">Batalkan Pesanan</a>
                                                             </div>
                                                         </div>
+                                                       @foreach ($pembatalan as $item)
+                                                    @if ($item->noPesanan == $noPesanan )
+                                                    @if ($pembatalan->count())
+                                                    <div class="card-footer text-center text-muted">Status Pembatalan : <span class="badge badge-primary">{{ $item->status
+                                                            }}</span> </div>
+                                                    @endif
+                                                    @endif
+                                                    
+                                                    
+                                                    @endforeach
                                                     </div>
                                                 </div>
                                                 @endif
-                                           
+                                                
                                             @endforeach
+                                            
                                         </div>
 
                                     </div>

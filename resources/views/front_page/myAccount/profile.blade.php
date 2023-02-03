@@ -50,75 +50,55 @@
                         </div>
                         <div class="order-body pt-3">
                             <h6 class="p-3 m-0 bg-light w-100">Riwayat Pesanan Saya</h6>
-                            <div class="pb-3 pt-3">
-                                <div class="p-3 rounded shadow-sm bg-white">
-                                    <div class="d-flex border-bottom pb-3">
-                                        <div class="text-muted mr-3">
-                                            <img alt="#" src="img/popular5.png" class="img-fluid order_img rounded">
+                            <div class="order-body">
+                            @foreach ($myorder as $item)
+                            {{-- deklarasi noPesanan untuk table Pesanaan --}}
+                            @php $noPesanan = $item->noPesanan; @endphp
+                                @if ($item->statusorder == "4")
+                                    @foreach ($pesanan as $p )
+                                         @if ($p->noPesanan == $noPesanan)
+                                            @php
+                                                $idProduk = $p->idProduk;
+                                                $nama = $p->produk->namaProduk;
+                                                $gambar = $p->produk->gambar;
+                                            @endphp
+                                         @endif
+                                    @endforeach
+                                <div class="pb-3">
+                                    <div class="p-3 rounded  bg-white">
+                                        <div class="d-flex border-bottom pb-3">
+                                            <div class="text-muted mr-3">
+                                                <img alt="#" src="/storage/{{ $gambar }}" class="img-fluid order_img rounded">
+                                            </div>
+                                            <div>
+                                                <p class="mb-0 font-weight-bold"><a href="" class="text-dark">#INVOICE <span class="text-primary">{{ $item->noPesanan }}</span></a></p>
+                                                <p class="mb-0"><strong>Jumlah Pesanan : </strong>{{ $item->qty }} Menu</p>
+                                                <p class="mb-0">
+                                                
+                                                <p class="mb-0 small mt-3"><a href="/orderdetile/{{ $item->noPesanan }}">Order Detail</a></p>
+                                            </div>
+                                            <div class="ml-auto">
+                                                <p class="bg-success text-white py-1 px-2 rounded small mb-1">Selesai</p>
+                                                <p class="small font-weight-bold text-right"><i class="feather-clock"></i>{{ $item->created_at }}</p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <p class="mb-0 font-weight-bold"><a href="restaurant.html"
-                                                    class="text-dark">Conrad Chicago Restaurant</a></p>
-                                            <p class="mb-0">Punjab, India</p>
-                                            <p>ORDER #321DERS</p>
-                                            <p class="mb-0 small"><a href="status_complete.html">View Details</a></p>
-                                        </div>
-                                        <div class="ml-auto">
-                                            <p class="bg-success text-white py-1 px-2 rounded small mb-1">Delivered</p>
-                                            <p class="small font-weight-bold text-center"><i class="feather-clock"></i>
-                                                06/04/2020</p>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex pt-3">
-                                        <div class="small">
-                                            <p class="text- font-weight-bold mb-0">Kesar Sweet x 1</p>
-                                            <p class="text- font-weight-bold mb-0">Gulab Jamun x 4</p>
-                                        </div>
-                                        <div class="text-muted m-0 ml-auto mr-3 small">Total Payment<br>
-                                            <span class="text-dark font-weight-bold">$12.74</span>
-                                        </div>
-                                        <div class="text-right">
-                                            <a href="checkout.html" class="btn btn-primary px-3">Reorder</a>
-                                            <a href="contact-us.html" class="btn btn-outline-primary px-3">Help</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pb-3 ">
-
-                                <div class="p-3 rounded  bg-white">
-                                    <div class="d-flex border-bottom pb-3">
-                                        <div class="text-muted mr-3">
-                                            <img alt="#" src="img/popular4.png" class="img-fluid order_img rounded">
-                                        </div>
-                                        <div>
-                                            <p class="mb-0 font-weight-bold"><a href="restaurant.html"
-                                                    class="text-dark">Conrad Chicago Restaurant</a></p>
-                                            <p class="mb-0">Punjab, India</p>
-                                            <p>ORDER #321DERS</p>
-                                            <p class="mb-0 small"><a href="status_complete.html">View Details</a></p>
-                                        </div>
-                                        <div class="ml-auto">
-                                            <p class="bg-success text-white py-1 px-2 rounded small mb-1">Delivered</p>
-                                            <p class="small font-weight-bold text-center"><i class="feather-clock"></i>
-                                                06/04/2020</p>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex pt-3">
-                                        <div class="small">
-                                            <p class="text- font-weight-bold mb-0">Kesar Sweet x 1</p>
-                                            <p class="text- font-weight-bold mb-0">Gulab Jamun x 4</p>
-                                        </div>
-                                        <div class="text-muted m-0 ml-auto mr-3 small">Total Payment<br>
-                                            <span class="text-dark font-weight-bold">$12.74</span>
-                                        </div>
-                                        <div class="text-right">
-                                            <a href="checkout.html" class="btn btn-primary px-3">Reorder</a>
-                                            <a href="contact-us.html" class="btn btn-outline-primary px-3">Help</a>
+                                        <div class="d-flex pt-3">
+                                            <p>Metode Pengiriman : <br> {{ $item->pengiriman }}</p>
+                                            <div class="text-muted m-0 ml-auto mr-3 small">Total Pesanan<br>
+                                                <span class="text-dark font-weight-bold">Rp.{{number_format($item->Totalbayar  ,0,".",".")  }}</span>
+                                            </div>
+                                            <div class="text-right">
+                                                <a href="/orderdetile/{{ $item->noPesanan }}" class="btn btn-primary px-3">Detail Menu</a>
+                                                <a href="/addCart/item/{{ $idProduk }}" class="btn btn-outline-primary px-3">Reorder</a>
+                                               
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                @endif
+                           
+                            @endforeach
+                        </div>
                         </div>
 
                     </div>

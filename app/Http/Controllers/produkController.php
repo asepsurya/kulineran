@@ -82,7 +82,8 @@ class produkController extends Controller
     }
     public function setelanProduk(){
         return view('BackEnd.produk.setelanProduk',[
-            'title'=>'Setelan Produk'
+            'title'=>'Setelan Produk',
+            'produk'=>Produk::where('rekomendasi','on')->get()
         ]);
     }
 }

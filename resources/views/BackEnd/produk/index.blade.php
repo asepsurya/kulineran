@@ -56,21 +56,24 @@
                     </thead>
                     <tbody>
                         @php
-                            $no =1;
+                        $no =1;
                         @endphp
                         @foreach ($produk as $item )
-                    
+
                         <tr data-widget="expandable-table" aria-expanded="false">
                             <td>
                                 <div class="btn-group ">
-                                    <a  href="/produk/edit/{{ encrypt($item->id) }}" class="btn btn-default btn-sm btn-flat"> Edit </a>
+                                    <a href="/produk/edit/{{ encrypt($item->id) }}"
+                                        class="btn btn-default btn-sm btn-flat"> Edit </a>
                                     <form action="/produk/delete" method="post">
                                         @csrf
                                         <input type="text" name="idProduk" id="idProduk" value="{{ $item->id }}" hidden>
-                                        <input type="text" name="oldImage" id="oldImage" value="{{ $item->gambar }}" hidden>
-                                        <button type="submit" class="btn btn-default btn-sm btn-flat" onclick="return confirm('Anda Yakin Produk {{ $item->namaProduk}} akan dihapus?')">
+                                        <input type="text" name="oldImage" id="oldImage" value="{{ $item->gambar }}"
+                                            hidden>
+                                        <button type="submit" class="btn btn-default btn-sm btn-flat"
+                                            onclick="return confirm('Anda Yakin Produk {{ $item->namaProduk}} akan dihapus?')">
                                             <i class="far fa-trash-alt"></i></button>
-                                    </form>   
+                                    </form>
                                 </div>
                             </td>
                             <td>{{ $no++ }}</td>
@@ -85,7 +88,7 @@
                                 <span class="badge rounded-pill bg-danger">
                                     Tidak Tersedia</span>
                                 @endif
-                               
+
                             </td>
                         </tr>
                         <tr class="expandable-body d-none">
@@ -114,9 +117,9 @@
                                                     <td>{{ $item->idSupplier }}</td>
                                                     <td>eFoody Store</td>
                                                     <td>{{ $item->varian }}</td>
-                                                    
+
                                                     <td>
-                                                       <img src="/storage/{{ $item->gambar }}" alt="" width="100">
+                                                        <img src="/storage/{{ $item->gambar }}" alt="" width="100">
                                                     </td>
                                                     <td style="width: 100px"></td>
                                                 </tr>
@@ -137,17 +140,17 @@
 
                             </td>
                         </tr>
-                                
+
                         @endforeach
                     </tbody>
-               
+
                 </table>
             </div>
             <!-- /.card-body -->
         </div>
     </div>
-    </div><!-- /.container-fluid -->
-</div>
+</div><!-- /.container-fluid -->
+
 
 <!-- addModal -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
@@ -160,90 +163,87 @@
                 </button>
             </div>
             <div class="modal-body">
-               
-                    <h4>Detail Produk</h4>
-                    <form action="/produk/addProduk" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <input type="text" name="idUser" id="idUser" value="{{ auth()->user()->id }}" hidden>
-                        <label for="gambar">Foto Produk /</label>
-                        <small>Upload foto yang menggugah selera biar pelanggan makin tertarik</small>
-                        <label for="images" class="drop-container mb-3">
-                            <span class="drop-title">Drop files here</span>
-                            or
-                            <input type="file" name="gambar" class="image" id="images" accept="image/*" required>
-                        </label>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label> Jenis Produk <span style="color:red">*</span></label>
-                                    <input type="text" class="form-control form-control-border" name="namaProduk" required=""
-                                        placeholder="Ex: Sate Ayam, Sempol Ayam">
-                                </div>
-                                <div class="form-group">
-                                    <label>Supplier</label>
-                                    <select class="form-control " style="width: 100%;"
-                                       name="idSupplier">
-                                        <option value="25001" data-select2-id="2"> eFoody Store</option>
-                                    </select>
-                                    <div align="right">
-                                        <small><a href="/category">+ Tambah Supplier</a></small>
-                                    </div>
-                                </div>
-                               
-                                <div class="form-group">
-                                    <label for="">Status Produk <span style="color:red">*</span></label>
-                                    <select name="status" id="status" class="form-control " required>
-                                        <option value="1">Tersedia</option>
-                                        <option value="0">Belum Tersedia</option>
-                                    </select>
-                                </div>
-                            </div> 
 
-                            <!-- /.col -->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label> Harga Produk(Rp.) <span style="color:red">*</span></label>
-                                    <small>Termasuk Pajak dan lain-lain</small>
-                                    <input type="number" class="form-control form-control-border" name="harga" required=""
-                                        placeholder="Harga Jual Produk" >
-                                </div>
-                                <div class="form-group">
-                                    <label>Kategori <span style="color:red">*</span> </label>
-                                    
-                                    <select class="form-control select2 "
-                                        name="idKategori" style="margin:10px" required>
-                                        <option selected=""> ------ Pilih Kategori ------ </option>
-                                        @foreach ($kategori as $kategori)
-                                            <option value="{{ $kategori->id }}">{{ $kategori->jenisKategori }}</option>
-                                        @endforeach
-                                    </select>
-                                    <div align="right">
-                                        <small><a href="/category">+ Tambah Kategori</a></small>
-                                    </div>
-                                </div>
-                                <!-- /.form-group -->
-                                <div class="form-group">
-                                    <label> Varian Produk </label><br>
-                                    <input type="text" name="varian" id="varian" class="form-control form-control-border">
-                                    <small>Ex:Pedas|Manis|Original</small>
+                <h4>Detail Produk</h4>
+                <form action="/produk/addProduk" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <input type="text" name="idUser" id="idUser" value="{{ auth()->user()->id }}" hidden>
+                    <label for="gambar">Foto Produk /</label>
+                    <small>Upload foto yang menggugah selera biar pelanggan makin tertarik</small>
+                    <label for="images" class="drop-container mb-3">
+                        <span class="drop-title">Drop files here</span>
+                        or
+                        <input type="file" name="gambar" class="image" id="images" accept="image/*" required>
+                    </label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label> Jenis Produk <span style="color:red">*</span></label>
+                                <input type="text" class="form-control form-control-border" name="namaProduk"
+                                    required="" placeholder="Ex: Sate Ayam, Sempol Ayam">
+                            </div>
+                            <div class="form-group">
+                                <label>Supplier</label>
+                                <select class="form-control " style="width: 100%;" name="idSupplier">
+                                    <option value="25001" data-select2-id="2"> eFoody Store</option>
+                                </select>
+                                <div align="right">
+                                    <small><a href="/category">+ Tambah Supplier</a></small>
                                 </div>
                             </div>
-                            <!-- /.col -->
+
+                            <div class="form-group">
+                                <label for="">Status Produk <span style="color:red">*</span></label>
+                                <select name="status" id="status" class="form-control " required>
+                                    <option value="1">Tersedia</option>
+                                    <option value="0">Belum Tersedia</option>
+                                </select>
+                            </div>
                         </div>
-                        <!-- /.row -->
-                        <label> Deskripsi Produk <span style="color:red">*</span></label>
-                        <textarea class="form-control" name="deskripsi" rows="5"
-                            placeholder="Gambarkan Mengenai Menu Anda.." required></textarea>
-               
+
+                        <!-- /.col -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label> Harga Produk(Rp.) <span style="color:red">*</span></label>
+                                <small>Termasuk Pajak dan lain-lain</small>
+                                <input type="number" class="form-control form-control-border" name="harga" required=""
+                                    placeholder="Harga Jual Produk">
+                            </div>
+                            <div class="form-group">
+                                <label>Kategori <span style="color:red">*</span> </label>
+
+                                <select class="form-control select2 " name="idKategori" style="margin:10px" required>
+                                    <option selected=""> ------ Pilih Kategori ------ </option>
+                                    @foreach ($kategori as $kategori)
+                                    <option value="{{ $kategori->id }}">{{ $kategori->jenisKategori }}</option>
+                                    @endforeach
+                                </select>
+                                <div align="right">
+                                    <small><a href="/category">+ Tambah Kategori</a></small>
+                                </div>
+                            </div>
+                            <!-- /.form-group -->
+                            <div class="form-group">
+                                <label> Varian Produk </label><br>
+                                <input type="text" name="varian" id="varian" class="form-control form-control-border">
+                                <small>Ex:Pedas|Manis|Original</small>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                    <label> Deskripsi Produk <span style="color:red">*</span></label>
+                    <textarea class="form-control" name="deskripsi" rows="5"
+                        placeholder="Gambarkan Mengenai Menu Anda.." required></textarea>
+
             </div>
 
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary btn-block">SIMPAN</button>
-            </form>
+                </form>
             </div>
         </div>
     </div>
 </div>
-
 
 @endsection

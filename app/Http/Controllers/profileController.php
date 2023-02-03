@@ -21,7 +21,10 @@ use Illuminate\Support\Facades\Storage;
 class profileController extends Controller
 {
     public function index(){
-        return view('front_page.myAccount.profile');
+        return view('front_page.myAccount.profile',[
+            'pesanan'=>Pesanan::where('idUser',Auth()->user()->id)->get(),
+            'myorder'=>myorder::where('idUser',Auth()->user()->id)->get()
+        ]);
     }
     public function ubahPhoto(request $request){
         $a = $request->validate([
@@ -169,7 +172,8 @@ class profileController extends Controller
     public function orderstatus(){
         return view('front_page.myAccount.statusOrder',[
            'myorder'=>myorder::where(['idUser'=>auth()->user()->id])->get(),
-           'pesanan'=>pesanan::where(['idUser'=>auth()->user()->id])->get()
+           'pesanan'=>pesanan::where(['idUser'=>auth()->user()->id])->get(),
+           'pembatalan'=>Pembatalan::where(['idUser'=>auth()->user()->id])->get(),
         ]);
     }
     public function orderdetile($idPesanan){
@@ -211,8 +215,9 @@ class profileController extends Controller
         Pembatalan::create([
             'noPesanan'=>$request->noPesanan,
             'idUser'=>auth()->user()->id,
-            'Alasan'=>$request->alasan,
-            'other'=>$request->other
+            'alasan'=>$request->alasan,
+            'other'=>$request->other,
+            'status'=>'Pengajuan'
         ]);
         return redirect()->back()->with('Berhasil','Data Berhasil diajukan');
     }
