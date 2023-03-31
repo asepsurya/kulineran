@@ -2,13 +2,7 @@
 @section('container')
 
 <div class="osahan-profile">
-    <div class="d-none">
-        <div class="bg-primary border-bottom p-3 d-flex align-items-center">
-            <a class="toggle togglew toggle-2 hc-nav-trigger hc-nav-1" href="#" role="button"
-                aria-controls="hc-nav-1"><span></span></a>
-            <h4 class="font-weight-bold m-0 text-white">Profile</h4>
-        </div>
-    </div>
+    
     <!-- profile -->
     <div class="container position-relative">
         <div class="py-5 osahan-profile row">

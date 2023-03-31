@@ -13,6 +13,9 @@ use App\Http\Controllers\checkoutController;
 use App\Http\Controllers\orderController;
 use App\Http\Controllers\outletController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\managementController;
+use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\SetelanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +39,7 @@ Route::get('/hapusItem/{id}',[cartController::class,'hapusItemCart'])->middlewar
 // checkout
 Route::post('/checkout',[checkoutController::class,'index'])->middleware('auth');
 Route::get('/checkout/success/{id}',[checkoutController::class,'Checkoutsuccess'])->middleware('auth');
+Route::get('/checkout/downloadinvoice-{idUser}-{id}',[orderController::class,'invoice'])->middleware('auth');
 Route::post('/midtrans-callback',[checkoutController::class,'callback'])->middleware('auth');
 // cupon
 Route::get('/coupons',[cuponsController::class,'index'])->middleware('auth');
@@ -73,6 +77,7 @@ Route::get('/produk/edit/{id_product}',[produkController::class,'edit'])->middle
 Route::post('/produk/updateProduk',[produkController::class,'updateProduk'])->middleware('auth','isAdmin');
 Route::post('/produk/delete',[produkController::class,'deleteProduk'])->middleware('auth','isAdmin');
 Route::get('/setelanproduk',[produkController::class,'setelanProduk'])->middleware('auth','isAdmin');
+Route::get('/produk/cetak',[produkController::class,'cetakProduk'])->middleware('auth','isAdmin');
 
 Route::post('/login/cekLogin',[authenticationController::class,'cekLogin']);
 Route::get('/login',[authenticationController::class,'index'])->middleware('guest')->name('login');
@@ -85,6 +90,7 @@ Route::get('/dashboard',[dashboardController::class,'index'])->middleware('auth'
 Route::get('/category',[categoryController::class,'index'])->middleware('auth','isAdmin');
 Route::get('/order',[orderController::class,'order'])->middleware('auth','isAdmin');
 Route::get('/order/detile/{noPesanan}/{idUser}',[orderController::class,'detileorder'])->middleware('auth','isAdmin');
+Route::get('/order/detile/{idUser}-invoice{id}',[orderController::class,'invoice'])->middleware('auth','isAdmin');
 Route::get('/order/update',[orderController::class,'orderUpdate'])->middleware('auth','isAdmin');
 Route::get('/pembatalan',[orderController::class,'pembatalan'])->middleware('auth','isAdmin');
 Route::get('/order/pembatalan/{noPesanan}',[orderController::class,'AddPembatalan'])->middleware('auth','isAdmin');
@@ -95,9 +101,40 @@ Route::post('/outlet/new',[outletController::class,'newOutlet'])->middleware('au
 Route::get('/outlet/edit/{id}',[outletController::class,'editOutlet'])->middleware('auth','isAdmin');
 Route::post('/outlet/edit',[outletController::class,'updateOutlet'])->middleware('auth','isAdmin');
 Route::get('/outlet/hapus/{id}',[outletController::class,'hapusOutlet'])->middleware('auth','isAdmin');
+// Management Toko
+Route::get('/toko/bukuKas',[managementController::class,'bukuKas'])->middleware('auth','isAdmin');
+Route::post('/toko/bukuKas/add',[managementController::class,'addbukuKas'])->middleware('auth','isAdmin');
 
+Route::get('/toko/rekening',[managementController::class,'rekening'])->middleware('auth','isAdmin');
+Route::post('/toko/rekening/add',[managementController::class,'addrekening'])->middleware('auth','isAdmin');
+Route::post('/toko/rekening/update',[managementController::class,'updaterekening'])->middleware('auth','isAdmin');
+Route::get('/toko/rekening/delete/{id}',[managementController::class,'deleterekening'])->middleware('auth','isAdmin');
+
+Route::get('/toko/kategoripemasukan',[managementController::class,'kPemasukan'])->middleware('auth','isAdmin');
+Route::post('/toko/kategoripemasukan/add',[managementController::class,'addkPemasukan'])->middleware('auth','isAdmin');
+Route::get('/toko/kategoripemasukan/delete/{id}',[managementController::class,'deletekPemasukan'])->middleware('auth','isAdmin');
+Route::post('/toko/kategoripemasukan/update',[managementController::class,'updatekPemasukan'])->middleware('auth','isAdmin');
+
+Route::get('/toko/kategoripengeluaran',[managementController::class,'kPengeluaran'])->middleware('auth','isAdmin');
+Route::post('/toko/kategoripengeluaran/add',[managementController::class,'addkPengeluaran'])->middleware('auth','isAdmin');
+Route::get('/toko/kategoripengeluaran/delete/{id}',[managementController::class,'deletekPengeluaran'])->middleware('auth','isAdmin');
+Route::post('/toko/kategoripengeluaran/update',[managementController::class,'updatekPengeluaran'])->middleware('auth','isAdmin');
 // Transaksi
 Route::get('/laporan',[LaporanController::class,'laporan'])->middleware('auth','isAdmin');
+// filter BukuKas
+Route::get('/toko/bukuKas/filterBukuKas',[managementController::class,'bukuKas'])->middleware('auth','isAdmin');
+Route::get('/toko/bukuKas/filterpenghasilan',[managementController::class,'bukuKas'])->middleware('auth','isAdmin');
+Route::get('/toko/bukuKas/laporan',[managementController::class,'laporan'])->middleware('auth','isAdmin');
+Route::get('/toko/bukuKas/cetak',[managementController::class,'cetakpemasukan'])->middleware('auth','isAdmin');
+// pengguna
+Route::get('/pengguna',[PenggunaController::class,'pengguna'])->middleware('auth','isAdmin');
+Route::post('/pengguna/add',[PenggunaController::class,'addpengguna'])->middleware('auth','isAdmin');
+Route::post('/pengguna/update',[PenggunaController::class,'updatepengguna'])->middleware('auth','isAdmin');
+Route::get('/pengguna/hapus/{id}',[PenggunaController::class,'hapuspengguna'])->middleware('auth','isAdmin');
 
+Route::get('/setelan/ongkir',[SetelanController::class,'ongkir'])->middleware('auth','isAdmin');
+Route::post('/setelan/ongkir/add',[SetelanController::class,'addongkir'])->middleware('auth','isAdmin');
+Route::post('/tambahBanner',[SetelanController::class,'addBanner'])->middleware('auth','isAdmin');
+Route::post('/hapusBanner',[SetelanController::class,'deleteBanner'])->middleware('auth','isAdmin');
 
 

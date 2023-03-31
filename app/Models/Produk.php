@@ -13,4 +13,7 @@ class Produk extends Model
     public function kategori(){
         return $this->belongsTo('App\Models\kategori','idKategori');
     }
+    public function outlet(){
+        return $this->belongsTo('App\Models\outlet','idSupplier');
+    }
 }

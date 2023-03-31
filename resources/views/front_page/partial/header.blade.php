@@ -52,8 +52,11 @@
                                     <a class="dropdown-item" href="/dashboard">Dashboard</a>
                                 @endif
                                 <a class="dropdown-item" href="/profile">My account</a>
+                                <a class="dropdown-item" href="/favorites">Favorite</a>
+                                <hr>
                                 <a class="dropdown-item" href="terms.html">Term of use</a>
                                 <a class="dropdown-item" href="privacy.html">Privacy policy</a>
+                                <hr>
                                 <form action="/logout" method="post">
                                     @csrf
                                     <button type="submit" class="dropdown-item">Logout</button>

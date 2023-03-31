@@ -82,18 +82,25 @@
                     <a class="toggle" href="#">
                         <span></span>
                     </a>
-                    <h4 class="font-weight-bold m-0 pl-5">Browse</h4>
+                    <a href="/" class="brand-wrap mb-0">
+                        <img alt="#" class="img-fluid" src="{{ asset('img/logo2-white.png') }}">
+                    </a>
                     <a class="text-white font-weight-bold ml-auto" data-toggle="modal" data-target="#exampleModal"
                         href="#">Filter</a>
                 </div>
             </div>
-            <div class="input-group mt-3 rounded shadow-sm overflow-hidden">
-                <div class="input-group-prepend">
-                    <button class="border-0 btn btn-outline-secondary text-dark bg-white btn-block"><i
-                            class="feather-search"></i></button>
-                </div>
-                <input type="text" class="shadow-none border-0 form-control"
-                    placeholder="Search for restaurants or dishes">
+            <div class=" col-12 py-5">
+                <form action="/search" method="get">
+                    <div class="autocomplete" style="width:100%;">
+                        <div class="input-group rounded shadow-sm ">
+                            <div class="input-group-prepend">
+                                <button class="border-0 btn btn-outline-secondary text-dark bg-white btn-block"><i class="feather-search"></i></button>
+                            </div>
+                            <input type="text" class="shadow-none border-0 form-control typeahead" placeholder="Mau Cari Apa Bro..." id="search"  name="search" value="{{ old('search') }}">
+                            <button type="submit" hidden></button>
+                        </div>                          
+                    </div>
+                  </form>
             </div>
         </div>
             @yield('container')     

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use App\Models\kategori;
 use App\Models\Produk;
+use App\Models\outlet;
+use App\Models\banner;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,6 +15,7 @@ class produkController extends Controller
         return view('BackEnd.produk.index',[
             'kategori'=>kategori::all(),
             'produk'=>Produk::all(),
+            'outlet'=>Outlet::all(),
             'title'=>'Produk Saya'
         ]);
     }
@@ -42,7 +46,8 @@ class produkController extends Controller
         return view('BackEnd.produk.edit',[
             'title'=>'Edit Produk',
             'produk'=>$data,
-            'kategori'=>kategori::all()
+            'kategori'=>kategori::all(),
+            'outlet'=>Outlet::all(),
         ]);
     }
 
@@ -83,7 +88,21 @@ class produkController extends Controller
     public function setelanProduk(){
         return view('BackEnd.produk.setelanProduk',[
             'title'=>'Setelan Produk',
-            'produk'=>Produk::where('rekomendasi','on')->get()
+            'produk'=>Produk::where('rekomendasi','on')->get(),
+            'banner'=>banner::all()
         ]);
     }
+    public function cetakProduk(){
+        $pdf = PDF::loadView('BackEnd.produk.laporan', [
+            'produk'=>Produk::all()
+        ]);
+        // $customPaper = array(0,0,800,900);
+        // $pdf->set_paper($customPaper);   
+        // download PDF file with download method
+        return $pdf->download('Laporan Daftar Produk-'.date('Y/m/d').'.pdf');
+        // return view('BackEnd.transaksi.invoice');
+
+        
+    }
+    
 }

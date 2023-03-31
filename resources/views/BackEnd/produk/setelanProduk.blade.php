@@ -71,34 +71,43 @@
                     </div>
                     <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel"
                         aria-labelledby="custom-tabs-four-profile-tab">
+                        <div class="card-header">
+                            <button class="btn btn-primary"  data-toggle="modal" data-target="#add">+ Tambah</button>
+                        </div>
                         <table class="table table-hover text-nowrap">
                             <thead>
                               <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">Created at</th>
+                                <th scope="col">Banner</th>
+                                <th scope="col">Action</th>
                               </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $no=1;
+                                @endphp
+                                @foreach ($banner as $item )
+                              
                               <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                <th scope="row">{{ $no++ }}</th>
+                                <td>{{ $item->created_at }}</td>
+                                <td>
+                                    <img src="/storage/{{ $item->banner }}" alt="" srcset="" width="50">
+                                </td>
+                                <td>
+                                    <form action="/hapusBanner" method="post">
+                                        @csrf
+                                    <input type="text" value="{{ $item->banner }}" name="oldimage" hidden>
+                                    <input type="text" value="{{ $item->id }}" name="id" hidden>
+                                    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                    </form>
+                                </form>
+                                </td>
+                               
                               </tr>
-                              <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                              </tr>
+                                    
+                              @endforeach
                             </tbody>
                           </table>
                     </div>
@@ -109,5 +118,34 @@
         </div>
     </div>
 </div>
-
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-centered" role="document">
+      <div class="modal-content">
+        {{-- <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ubah Rekening</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> --}}
+        <div class="modal-body p-0">
+            <form action="/tambahBanner" method="post" enctype="multipart/form-data" >
+                <div class="p-3">
+                @csrf
+                <input type="text" name="idUser" id="idUser" value="{{ auth()->user()->id }}" hidden>
+                <label for="gambar">Upload Foto /</label>
+                <small>Upload foto Promosi Produk anda</small>
+                <label for="images" class="drop-container mb-3">
+                    <span class="drop-title">Drop files here</span>
+                    or
+                    <input type="file" name="gambar" class="image" id="images" accept="image/*" required>
+                </label>
+            </div>
+                <input type="text" name="idUser" value="{{ auth()->user()->id }}" hidden>
+                <button type="submit" class="btn btn-primary btn-block">+ Simpan</button>
+            </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 @endsection

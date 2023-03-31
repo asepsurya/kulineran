@@ -134,7 +134,8 @@
                         </div>
                        
                       </div>
-              
+                      <a href="/checkout/downloadinvoice-{{ auth()->user()->id }}-{{ $id_pesan }}" class="btn btn-primary mt-5"><i class="feather-download"></i> Download Invoice</a><br>
+                      <small><i>Untuk <b>Pemesanan Lanngsung</b> Harap Membawa bukti Transaksi ini</i></small>
                     </div>
                   </div>
                 </div>

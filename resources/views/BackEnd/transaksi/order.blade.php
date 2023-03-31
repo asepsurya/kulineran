@@ -8,8 +8,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Starter Page</li>
+                    {{-- <div align="right"><button class="btn btn-primary">Export PDF</button></div> --}}
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -41,7 +40,9 @@
                             href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings"
                             aria-selected="false">Selesai</a>
                     </li>
+                    
                 </ul>
+               
             </div>
             <div class="card-body">
                 <div class="tab-content" id="custom-tabs-four-tabContent">
@@ -74,9 +75,17 @@
 
                                     @foreach ($order as $item )
                                     @if ($item->statusorder == "1")
-                                    <tr>
-                                        <td><img src="/storage/{{ $item->user->gambar }}" alt="" srcset=""
-                                                class="rounded-circle mr-3" width="30">{{ $item->user->nama_lengkap }}
+                                       
+                                    <tr style="{{ $item->pengiriman =="Delivery Order" ? 'background-color: #d1ffe0' : '' }}">
+                                        <td>
+                                            @if ($item->user->gambar)
+                                            <img src="/storage/{{ $item->user->gambar }}" alt="" srcset=""
+                                            class="rounded-circle mr-3" width="30">{{ $item->user->nama_lengkap }}
+                                            @else
+                                            <img src="{{ asset('img/user/defalut.jpg') }}" alt="" srcset=""
+                                            class="rounded-circle mr-3" width="30">{{ $item->user->nama_lengkap }}
+                                            @endif
+                                            
                                         </td>
                                         <td>#<a href="/order/detile/{{ $item->noPesanan }}/{{ $item->idUser }}">{{
                                                 $item->noPesanan }}</a></td>
@@ -128,8 +137,15 @@
                                     @foreach ($order as $item )
                                     @if ($item->statusorder == "2")
                                     <tr>
-                                        <td><img src="/storage/{{ $item->user->gambar }}" alt="" srcset=""
-                                                class="rounded-circle mr-3" width="30">{{ $item->user->nama_lengkap }}
+                                        <td>
+                                            @if ($item->user->gambar)
+                                            <img src="/storage/{{ $item->user->gambar }}" alt="" srcset=""
+                                            class="rounded-circle mr-3" width="30">{{ $item->user->nama_lengkap }}
+                                            @else
+                                                <img alt="#" src="{{ asset('img/user/defalut.jpg') }}" class="img-fluid rounded-circle header-user mr-2 header-user" width="30">
+                                                {{ $item->user->nama_lengkap }}
+                                            @endif
+                                           
                                         </td>
                                         <td>#<a href="/order/detile/{{ $item->noPesanan }}/{{ $item->idUser }}">{{
                                                 $item->noPesanan }}</a></td>
@@ -184,8 +200,14 @@
                                     @foreach ($order as $item )
                                     @if ($item->statusorder == "3")
                                     <tr>
-                                        <td><img src="/storage/{{ $item->user->gambar }}" alt="" srcset=""
-                                                class="rounded-circle mr-3" width="30">{{ $item->user->nama_lengkap }}
+                                        <td>
+                                            @if ($item->user->gambar)
+                                            <img src="/storage/{{ $item->user->gambar }}" alt="" srcset=""
+                                            class="rounded-circle mr-3" width="30">{{ $item->user->nama_lengkap }}
+                                            @else
+                                                <img alt="#" src="{{ asset('img/user/defalut.jpg') }}" class="img-fluid rounded-circle header-user mr-2 header-user" width="30">
+                                                {{ $item->user->nama_lengkap }}
+                                            @endif
                                         </td>
                                         <td>#<a href="/order/detile/{{ $item->noPesanan }}/{{ $item->idUser }}">{{
                                                 $item->noPesanan }}</a></td>
@@ -238,8 +260,14 @@
                                     @foreach ($order as $item )
                                     @if ($item->statusorder == "4")
                                     <tr>
-                                        <td><img src="/storage/{{ $item->user->gambar }}" alt="" srcset=""
-                                                class="rounded-circle mr-3" width="30">{{ $item->user->nama_lengkap }}
+                                        <td>
+                                            @if ($item->user->gambar)
+                                            <img src="/storage/{{ $item->user->gambar }}" alt="" srcset=""
+                                            class="rounded-circle mr-3" width="30">{{ $item->user->nama_lengkap }}
+                                            @else
+                                                <img alt="#" src="{{ asset('img/user/defalut.jpg') }}" class="img-fluid rounded-circle header-user mr-2 header-user" width="30">
+                                                {{ $item->user->nama_lengkap }}
+                                            @endif
                                         </td>
                                         <td>#<a href="/order/detile/{{ $item->noPesanan }}/{{ $item->idUser }}">{{
                                                 $item->noPesanan }}</a></td>

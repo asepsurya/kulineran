@@ -12,6 +12,7 @@ use App\Models\Produk;
 use App\Models\kategori;
 use App\Models\Pesanan;
 use App\Models\myorder;
+use App\Models\token;
 use App\Models\Pembatalan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -180,8 +181,10 @@ class profileController extends Controller
         return view('front_page.myAccount.detilestatusOrder',[
             'pesanan'=>Pesanan::where('noPesanan',$idPesanan)->get(),
             'myorder'=>myorder::where('noPesanan',$idPesanan)->get(),
+            'getToken'=>token::where('noPesanan',$idPesanan)->get('token'),
             'Alamat'=>Alamat::where(['idUser' => auth()->user()->id,'default'=>'on'])->get()
         ]);
+        
     }
 
     public function favorites(){

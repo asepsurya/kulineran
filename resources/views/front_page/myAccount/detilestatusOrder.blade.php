@@ -96,6 +96,7 @@
                                             <p class="mb-0 font-weight-bold"><a href="" class="text-dark text-15">{{ $pesanan->produk->namaProduk }}</a></p>
                                             <p class="mb-0"><strong>Varian  : </strong>{{ $pesanan->varian }}</p>
                                             <p class="mb-0">#INVOICE {{ $pesanan->noPesanan }}</p>
+                                            <p class="mb-0">Qty : {{ $pesanan->qty }}</p>
                                     
                                         </div>
                                         <div class="ml-auto">
@@ -142,7 +143,14 @@
                                 </table>
                              
                             </div>
+                           @if ($myorder->status == "unpaid")
+                            <div class="px-3">
+                                <button id="pay-button" class="btn btn-primary btn-block">Bayar</button>
+                            </div>
+                            
+                            @endif
                             <p class="m-0 small text-muted p-3">You can check your order detail here, Thank you for order.</p>
+                          
                         </div>
                     </div>
                    
@@ -151,4 +159,19 @@
         </div>
     </div>
 </div>
+
+@foreach ($getToken as $item)
+     @php
+         $tokensaya = $item->token;
+     @endphp
+@endforeach
+<script type="text/javascript">
+    // For example trigger on button clicked, or any time you need
+    var payButton = document.getElementById('pay-button');
+    payButton.addEventListener('click', function () {
+      // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
+      window.snap.pay('{{ $tokensaya }}');
+      // customer will be redirected after completing payment pop-up
+    });
+  </script>
 @endsection

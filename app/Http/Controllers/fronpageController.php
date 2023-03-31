@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Produk;
 use App\Models\Alamat;
 use App\Models\kategori;
+use App\Models\banner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,9 +14,10 @@ class fronpageController extends Controller
         return view('front_page.index',[
             
             'latestProduk'=>Produk::paginate(3),
-            'produk'=>Produk::where('status','1')->paginate(8)->withQueryString(),
+            'produk'=>Produk::where('status','1')->latest()->paginate(8)->withQueryString(),
             'rekomendasi'=>Produk::where('rekomendasi','on')->get(),
-            'kategori'=>kategori::all()
+            'kategori'=>kategori::all(),
+            'banner'=>banner::all()
         ]);
     }
     public function search(){

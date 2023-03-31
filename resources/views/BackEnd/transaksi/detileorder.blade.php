@@ -29,8 +29,13 @@
                 <div class="card card-primary card-outline">
                     <div class="card-body box-profile">
                         <div class="text-center">
+                        @if ($item->user->gambar)
                             <img class="profile-user-img img-fluid img-circle" src="/storage/{{ $item->user->gambar }}"
-                                alt="User profile picture">
+                            alt="User profile picture">
+                        @else
+                            <img alt="#" src="{{ asset('img/user/defalut.jpg') }}" class="img-fluid rounded-circle header-user mr-2 header-user" width="100">   
+                        @endif
+
                         </div>
                         <h3 class="profile-username text-center">{{ $item->user->nama_lengkap }}</h3>
                         <p class="text-muted text-center">{{ $item->user->email }}<br>Telp: {{ $item->user->telp}}</p>
@@ -77,7 +82,8 @@
                 <h3 class="card-title ">#INVOICE <span class="text-primary">{{ request('noPesanan') }}</span> </h3>
                 
                 <div class="card-tools">
-                    <button class="btn btn-default"><span class="far fa-file"></span> Cetak Invoice</button>
+                    <a href="/order/detile/{{ $item->idUser }}-invoice{{ request('noPesanan') }}">
+                    <button class="btn btn-default"><span class="far fa-file"></span> Cetak Invoice</button></a>
                     {{-- <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                         <i class="fas fa-minus"></i>
                     </button>
@@ -104,6 +110,9 @@
                             </th>
                             <th>
                                 Date/Time 
+                            </th>
+                            <th>
+                                 Total 
                             </th>
                           
                         </tr>
@@ -135,12 +144,12 @@
                                 {{number_format($item->produk->harga  ,0,".",".") }}
                             </td>
                            <td>{{ $item->created_at }}</td>
-                         
+                            <td align="right">{{ number_format($item->qty * $item->produk->harga ,0,".",".")  }}</td>
                         </tr>
                              @php
                                 
                                  $total += $item->qty * $item->produk->harga;
-                                
+                                $status = $item->ongkir;
                              @endphp 
                         @endforeach
                     </tbody>
@@ -148,7 +157,9 @@
             </div>
             <div class="card-footer text-right" >
                <p><strong>Total :</strong>{{number_format($total ,0,".",".") }}</p><hr>
-               <p><strong>Ongkos Kirim : </strong>12.000</p><hr>
+               <p><strong>Ongkos Kirim : </strong>
+                {{number_format($status  ,0,".",".") }}
+                </p><hr>
                <p><strong>Total Pembayaran : </strong>{{number_format($totalBayar  ,0,".",".") }}</p>
             </div>
 

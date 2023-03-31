@@ -56,10 +56,13 @@
                                                 class="feather-heart"></i></a></div>
                                     {{-- <div class="member-plan position-absolute"><span
                                             class="badge badge-dark">Promoted</span></div> --}}
-                                    <a href="restaurant.html">
-                                        <img alt="#" src="/storage/{{ $item->gambar }}"
-                                            class="img-fluid item-img w-100">
-                                    </a>
+                                            <div style="background-image: url('/storage/{{ $item->gambar }}');
+                                                max-height:200px;
+                                                overflow:hidden;
+                                                height:200px; 
+                                                background-repeat: no-repeat;
+                                                background-size: cover;">
+                                    </div>
                                 </div>
                                 <div class="p-3 position-relative">
                                     <div class="list-card-body">

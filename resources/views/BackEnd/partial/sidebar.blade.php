@@ -95,7 +95,7 @@
             </p>
           </a>
         </li>
-
+        <li class="nav-header">Transaksi</li>
         <li class="nav-item {{ Request::is('order*','pembatalan') ? 'menu-open' : 'menu-close'}} ">
           <a href="#" class="nav-link {{ Request::is('order*','pembatalan') ? 'active' : ''}}">
             <i class="nav-icon fas fa-hand-holding-usd fa-boxes"></i>
@@ -120,53 +120,70 @@
             </li>
           </ul>
         </li>
-
-
-        {{-- <li class="nav-item">
-          <a href="../pages/pelanggan/index" class="nav-link">
-            <i class="nav-icon fas fa-users"></i>
+        <li class="nav-header">Management Toko</li>
+        <li class="nav-item {{ Request::is('toko*') ? 'menu-open' : 'menu-close'}} ">
+          <a href="#" class="nav-link {{ Request::is('toko*') ? 'active' : ''}}">
+            <i class="nav-icon fas fa-file"></i>
             <p>
-              Database Pelanggan
-            </p>
-          </a>
-        </li>
-
-        <li class="nav-item menu-close">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-cogs"></i>
-            <p>
-              Pengaturan Toko
+              Laporan Keuangan
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
+         
             <li class="nav-item">
-              <a href="../pages/data_produk/index" class="nav-link ">
+              <a href="/toko/bukuKas" class="nav-link {{ Request::is('toko/bukuKas*') ? 'active' : ''}}">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Alamat Toko</p>
+                <p>Buku Kas Toko</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="/toko/kategoripengeluaran" class="nav-link {{ Request::is('toko/kategoripengeluaran') ? 'active' : ''}}">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Management Pengguna</p>
+                <p>Kategori Pengeluaran</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="../pages/iframe/index" class="nav-link">
+              <a href="/toko/kategoripemasukan" class="nav-link {{ Request::is('toko/kategoripemasukan') ? 'active' : ''}}">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Database</p>
+                <p>Kategori Pemasukan</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="/toko/rekening" class="nav-link {{ Request::is('toko/rekening') ? 'active' : ''}}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Rekening</p>
+              </a>
+            </li>
+
+          
           </ul>
-        </li> --}}
-        <li class="nav-header">Main Menu</li>
+        </li>
+
+        <li class="nav-item">
+          <a href="/pengguna" class="nav-link  {{ Request::is('pengguna*') ? 'active' : ''}}">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+              Management Pengguna
+            </p>
+          </a>
+        </li>
+        <li class="nav-header">Setelan Toko</li>
+        <li class="nav-item">
+          <a href="/setelan/ongkir" class="nav-link  {{ Request::is('setelan/ongkir') ? 'active' : ''}}">
+            <i class="nav-icon fas fa-car"></i>
+            <p>
+              Ongkos Kirim
+            </p>
+          </a>
+        </li>
+        {{-- <li class="nav-header">Main Menu</li>
         <li class="nav-item">
           <a href="/laporan" class="nav-link {{ Request::is('laporan') ? 'active' : ''}}">
             <i class="far fa fa-book nav-icon"></i>
-            <p>Laporan Transaksi</p>
+            <p>Laporan Penjualan</p>
           </a>
-        </li>
+        </li> --}}
 
 
 

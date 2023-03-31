@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('qty');
             $table->string('status')->default('unpaid');
             $table->string('statusorder');
-            $table->string('notes');
+            $table->string('notes')->nullable();
             $table->string('pengiriman')->nullable();
             $table->string('Totalbayar');
             $table->timestamps();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\myorder;
 use App\Models\Pesanan;
 use App\Models\Alamat;
+use PDF;
 use App\Models\Pembatalan;
 use Illuminate\Http\Request;
 
@@ -61,5 +62,18 @@ class orderController extends Controller
         Pembatalan::where('noPesanan',$noPesanan)->update(['status'=>'Pengajuan Ditolak']);
       
         return redirect()->back()->with('Berhasil','Berhasil Disimpan');
+    }
+    
+    public function invoice($idUser,$id){
+      
+        $pdf = PDF::loadView('BackEnd.transaksi.invoice', [
+            'myorder'=> myorder::where(['noPesanan'=>$id,'idUser'=>$idUser])->get(),
+            'pesanan'=>Pesanan::where(['noPesanan'=>$id,'idUser'=>$idUser])->get()
+        ]);
+        $customPaper = array(0,0,450,650);
+        $pdf->set_paper($customPaper);   
+      // download PDF file with download method
+        return $pdf->download('#INVOICE-'.$id.'.pdf');
+        // return view('BackEnd.transaksi.invoice');
     }
 }

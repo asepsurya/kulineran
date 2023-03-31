@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('idUser');
             $table->string('idProduk');
-            $table->string('nama_produk');
+           
             $table->string('idKategori');
             
             $table->timestamps();

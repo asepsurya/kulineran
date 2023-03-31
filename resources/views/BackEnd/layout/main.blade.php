@@ -159,6 +159,13 @@
         });
         
     });
+    $(document).ready(function() {
+            $('.select3').select2({
+            dropdownParent: $('#tambah'),
+            theme: 'bootstrap4'
+        });
+        
+    });
     
 $(document).ready(function() {
     $('.js-example-basic-single').select2({

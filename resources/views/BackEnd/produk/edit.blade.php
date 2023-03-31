@@ -56,9 +56,12 @@
                     placeholder="Ex: Sate Ayam, Sempol Ayam" value="{{ $item->namaProduk }}">
             </div>
             <div class="form-group">
-                <label>Supplier</label>
+                <label>Outlet</label>
                 <select class="form-control js-example-basic-single " style="width: 100%;" name="idSupplier">
-                    <option value="25001" data-select2-id="2"> eFoody Store</option>
+                    @foreach ($outlet as $item2)
+                       <option value="{{ $item2->id }}">{{ $item2->namaOutlet }}</option> 
+                    @endforeach
+                  
                 </select>
                 <div align="right">
                     <small><a href="/category">+ Tambah Supplier</a></small>

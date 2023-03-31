@@ -66,9 +66,15 @@
                                                 class="feather-trash-2"></i></a></div>
                                     {{-- <div class="member-plan position-absolute"><span
                                             class="badge badge-dark">Promoted</span></div> --}}
+                                            <div style="background-image: url('/storage/{{ $item->produk->gambar }}');
+                                                max-height:200px;
+                                                overflow:hidden;
+                                                height:200px; 
+                                                background-repeat: no-repeat;
+                                                background-size: cover;">
+                                    </div>
                                   
-                                        <img alt="#" src="/storage/{{ $item->produk->gambar }}"
-                                            class="img-fluid item-img w-100">
+                                        
                                 </div>
                                 <div class="p-3 position-relative">
                                     <div class="list-card-body">

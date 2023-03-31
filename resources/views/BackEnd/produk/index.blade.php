@@ -24,7 +24,7 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal"><i
                             class="fas fa-plus"></i> Tambah Data </button>
-                    <a href="action/cetak.php"><button type="button" class="btn btn-default"><i
+                    <a href="/produk/cetak"><button type="button" class="btn btn-default"><i
                                 class="far fa-file-pdf"></i> Exsport Data</button></a>
 
                 </div>
@@ -104,8 +104,8 @@
                                             <thead>
                                                 <tr>
                                                     <th style="width: 10px">#</th>
-                                                    <th style="width: 100px">ID Supplier</th>
-                                                    <th style="width: 200px">Nama Supplier</th>
+                                                    <th style="width: 100px">ID Outlet</th>
+                                                    <th style="width: 200px">Nama Outlet</th>
                                                     <th style="width: 200px">Varian Produk</th>
                                                     <th style="width: 100px">Foto</th>
                                                     <th></th>
@@ -183,18 +183,21 @@
                                     required="" placeholder="Ex: Sate Ayam, Sempol Ayam">
                             </div>
                             <div class="form-group">
-                                <label>Supplier</label>
-                                <select class="form-control " style="width: 100%;" name="idSupplier">
-                                    <option value="25001" data-select2-id="2"> eFoody Store</option>
+                                <label>Outlet</label>
+                                <select class="form-control select2" style="width: 100%;" name="idSupplier">
+                                    @foreach ($outlet as $item)
+                                        <option value="{{ $item->id }}">{{ $item->namaOutlet }}</option>
+                                    @endforeach
+                                   
                                 </select>
                                 <div align="right">
-                                    <small><a href="/category">+ Tambah Supplier</a></small>
+                                    <small><a href="/outlet">+ Tambah Outlet</a></small>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="">Status Produk <span style="color:red">*</span></label>
-                                <select name="status" id="status" class="form-control " required>
+                                <select name="status" id="status" class="form-control  select2" required>
                                     <option value="1">Tersedia</option>
                                     <option value="0">Belum Tersedia</option>
                                 </select>
@@ -213,7 +216,7 @@
                                 <label>Kategori <span style="color:red">*</span> </label>
 
                                 <select class="form-control select2 " name="idKategori" style="margin:10px" required>
-                                    <option selected=""> ------ Pilih Kategori ------ </option>
+                                    <option> ------ Pilih Kategori ------ </option>
                                     @foreach ($kategori as $kategori)
                                     <option value="{{ $kategori->id }}">{{ $kategori->jenisKategori }}</option>
                                     @endforeach

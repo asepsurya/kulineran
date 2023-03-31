@@ -150,16 +150,16 @@
                         </label>
                     </div>
                
-                    <div class="input-group-sm mb-2 input-group">
+                    {{-- <div class="input-group-sm mb-2 input-group">
                         <input placeholder="Enter promo code" type="text" class="form-control">
                         <div class="input-group-append"><button type="button" class="btn btn-primary"><i
                                     class="feather-percent"></i> APPLY</button></div>
-                    </div>
+                    </div> --}}
 
                     <div class="mb-0 input-group">
                         <div class="input-group-prepend"><span class="input-group-text"><i
                                     class="feather-message-square"></i></span></div>
-                        <textarea placeholder="Any suggestions? We will pass it on..." aria-label="With textarea"
+                        <textarea placeholder="Catatan.." aria-label="With textarea"
                             class="form-control" id="selectbox"></textarea>
                     </div>
                 </div>
@@ -195,7 +195,10 @@
                 </div>
                  {{-- end desc --}}
                 <div id="2" class="desc">
-
+                         {{-- cek ongkir terbaru --}}
+                        @foreach ($ongkir as $item)
+                            @php $myongkir = $item->ongkir @endphp
+                        @endforeach
                     <div class="bg-white p-3 clearfix border-bottom">
                         <input type="hidden" name="noPesanan" id="" value="{{ rand() }}">
                         <p class="mb-1">Total Pesanan <span class="float-right text-dark"></span>
@@ -203,20 +206,21 @@
                         </p>
 
                         <p class="mb-1">Delivery Fee<span class="text-info ml-1"><i
-                                    class="feather-info"></i></span><span class="float-right text-dark">Rp.{{ number_format(12000,0,".",".")}}</span>
+                                    class="feather-info"></i></span><span class="float-right text-dark">Rp.{{ number_format($myongkir,0,".",".")}}</span>
                         </p>
                         <p class="mb-1 text-success">Total Discount<span class="float-right text-success">0</span></p>
                         <hr>
-                        <h6 class="font-weight-bold mb-0"> TO PAY <span class="float-right">Rp. {{ number_format($SubTotal+12000,0,".",".")}}</span>
+                        <h6 class="font-weight-bold mb-0"> TO PAY <span class="float-right">Rp. {{ number_format($SubTotal+$myongkir,0,".",".")}}</span>
                         </h6>
                     </div>
                     <div class="p-3">
+                       
                         <form action="/checkout" method="post">
                             @csrf
                             <input type="text" name="pengiriman" value="Delivery Order" hidden>
                             <input type="text" name="noPesanan" value="{{ $noPesanan }}" hidden>
                             <input type="text" name="Totalbayar" value="{{ $SubTotal+12000 }}" hidden>
-                            <input type="text" name="ongkir" value="12000" hidden>
+                            <input type="text" name="ongkir" value="{{ $myongkir }}" hidden>
                             <input type="text" name="diskon" value="0" hidden>
                             <input id="catatan2" type="text" name="notes" hidden>
                             <input id="qty" type="text" name="qty" value="{{ $cart->count() }}" hidden>

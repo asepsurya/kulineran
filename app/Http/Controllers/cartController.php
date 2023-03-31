@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Alamat;
 use App\Models\cart;
+use App\Models\ongkir;
 use App\Models\pesanan;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -108,7 +109,8 @@ class cartController extends Controller
             'alamat'=>Alamat::where([
                 'idUser' => auth()->user()->id,
                 'default'=>'on'
-                ])->get()
+                ])->get(),
+            'ongkir'=>ongkir::all()
         ]);
     }
 

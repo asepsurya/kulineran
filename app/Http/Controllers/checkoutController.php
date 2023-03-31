@@ -5,6 +5,7 @@ use App\Models\cart;
 use App\Models\pesanan;
 use App\Models\Alamat;
 use App\Models\myorder;
+use App\Models\token;
 use Illuminate\Http\Request;
 
 class checkoutController extends Controller
@@ -71,7 +72,10 @@ class checkoutController extends Controller
          
     }
     $snapToken = \Midtrans\Snap::getSnapToken($params);
-
+        token::create([
+            'noPesanan'=>$id2,
+            'token'=>$snapToken
+        ]);
         return view('front_page.transaction.successTrans',[
             'token'=> $snapToken,
             'alamat'=>Alamat::where([
